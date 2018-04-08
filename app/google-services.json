@@ -1,0 +1,63 @@
+{
+  "project_info": {
+    "project_number": "125613202108",
+    "firebase_url": "https://createuserapp.firebaseio.com",
+    "project_id": "createuserapp",
+    "storage_bucket": "createuserapp.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:125613202108:android:e7076814b133b0aa",
+        "android_client_info": {
+          "package_name": "com.example.anders.createuserapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "125613202108-qvd1965umhbddljl4lrgc2f5hi73v43b.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.anders.createuserapp",
+            "certificate_hash": "bfa8cad89bd176cbc81633cc8ffe640d5d79910f"
+          }
+        },
+        {
+          "client_id": "125613202108-9lne05rdtg22l89eimfndhim1la1lt4i.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.anders.createuserapp",
+            "certificate_hash": "06ef213741e43a2e5b4421319fcc85893455d51c"
+          }
+        },
+        {
+          "client_id": "125613202108-iin6ljnp7k7tpeke04jm2aaqdap7b6sb.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDal-H90ST4FmuwYmodvC0mbP0sX0T2YH4"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "125613202108-iin6ljnp7k7tpeke04jm2aaqdap7b6sb.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

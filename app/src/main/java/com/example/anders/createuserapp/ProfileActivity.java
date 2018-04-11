@@ -67,7 +67,7 @@ public class ProfileActivity extends AppCompatActivity {
                 break;
             case R.id.menuEditUserData:
 
-                //finish();
+                finish();
                 startActivity(new Intent (this, EditUserDataActivity.class));
         }
 

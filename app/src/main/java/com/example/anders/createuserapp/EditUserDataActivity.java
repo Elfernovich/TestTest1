@@ -28,7 +28,7 @@ import java.util.ArrayList;
 import java.util.Objects;
 
 public class EditUserDataActivity extends AppCompatActivity {
-    private static final String TAG = "ViewDatabase";
+    private static final String TAG = "EditUserDataActivity";
 
     //Add Firebase database/authenticator stuff
     private FirebaseAuth mAuth;
@@ -48,7 +48,7 @@ public class EditUserDataActivity extends AppCompatActivity {
 
         mAuth = FirebaseAuth.getInstance();
         myFirebaseDatabase = FirebaseDatabase.getInstance();
-        databaseUsers = myFirebaseDatabase.getReference().child("users");
+        databaseUsers = myFirebaseDatabase.getReference();//.child("users");
         FirebaseUser usersID = mAuth.getCurrentUser();
         userID = usersID.getUid();
 
@@ -56,10 +56,10 @@ public class EditUserDataActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
 
         mListView = (ListView) findViewById(R.id.listViewTest);
-        email = (EditText) findViewById(R.id.textViewEditEmail);
+/*        email = (EditText) findViewById(R.id.textViewEditEmail);
         firstName = (EditText) findViewById(R.id.textViewEditFirstName);
         lastName = (EditText) findViewById(R.id.textViewEditLastName);
-        memberNumber = (EditText) findViewById(R.id.textViewEditMemberNumber);
+        memberNumber = (EditText) findViewById(R.id.textViewEditMemberNumber);*/
 
 
         mAuthListener = new FirebaseAuth.AuthStateListener() {
@@ -101,10 +101,10 @@ public class EditUserDataActivity extends AppCompatActivity {
             userInfo.setMemberNumber(ds.child(userID).getValue(User.class).getMemberNumber()); // set the member number
 
             // display all the information
-            Log.d(TAG, "showData: email" + userInfo.getEmail());
-            Log.d(TAG, "showData: firstName" + userInfo.getFirstName());
-            Log.d(TAG, "showData: lastName" + userInfo.getLastName());
-            Log.d(TAG, "showData: memberNumber" + userInfo.getMemberNumber());
+            Log.d(TAG, "showData: email: " + userInfo.getEmail());
+            Log.d(TAG, "showData: firstName: " + userInfo.getFirstName());
+            Log.d(TAG, "showData: lastName: " + userInfo.getLastName());
+            Log.d(TAG, "showData: memberNumber: " + userInfo.getMemberNumber());
 
             ArrayList<String> array = new ArrayList<>();
             array.add(userInfo.getEmail());

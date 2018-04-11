@@ -24,6 +24,7 @@ public class UserDataActivity extends AppCompatActivity implements View.OnClickL
     EditText firstName;
     EditText lastName;
     EditText memberNumber;
+    private String userID;
 
 
     DatabaseReference databaseUsers;
@@ -36,6 +37,8 @@ public class UserDataActivity extends AppCompatActivity implements View.OnClickL
 
         databaseUsers = FirebaseDatabase.getInstance().getReference("");
         mAuth = FirebaseAuth.getInstance();
+        FirebaseUser usersID = mAuth.getCurrentUser();
+        userID = usersID.getUid();
 
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -61,17 +64,21 @@ public class UserDataActivity extends AppCompatActivity implements View.OnClickL
     }
 
     private void addUser() {
+        FirebaseUser user_Email = mAuth.getCurrentUser();
+        FirebaseUser usersID = mAuth.getCurrentUser();
+        userID = usersID.getUid();
+
         String first_Name = firstName.getText().toString().trim();
         String last_Name = lastName.getText().toString().trim();
         String member_Number = memberNumber.getText().toString().trim();
-        FirebaseUser user_Email = mAuth.getCurrentUser();
 
         if (!TextUtils.isEmpty(first_Name) && (!TextUtils.isEmpty(last_Name))) {
 
             String displayEmail = user_Email.getEmail();
+            String displayUserID = usersID.getUid();
 
             User user = new User(displayEmail, first_Name, last_Name, member_Number);
-            databaseUsers.child("users").push().setValue(user);
+            databaseUsers.child("users").child(displayUserID).setValue(user);
             //databaseUsers.setValue(user);
 
             Toast.makeText(this, "Din profil er opdateret", Toast.LENGTH_SHORT).show();

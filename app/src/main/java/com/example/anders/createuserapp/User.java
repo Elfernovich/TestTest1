@@ -2,10 +2,10 @@
 package com.example.anders.createuserapp;
 public class User {
 
+    String email;
     String firstName;
     String lastName;
     String memberNumber;
-    String email;
 
 
 
@@ -25,6 +25,8 @@ public class User {
         this.lastName = lastName;
         this.memberNumber = memberNumber;
     }
+
+
 
     public String getFirstName() {
         return firstName;

@@ -7,6 +7,8 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
@@ -14,7 +16,7 @@ import android.widget.TextView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
-public class ProfileActivity extends AppCompatActivity {
+public class ProfileActivity extends AppCompatActivity{
 
     private FirebaseAuth mAuth;
     TextView email;
@@ -80,4 +82,12 @@ public class ProfileActivity extends AppCompatActivity {
         String displayEmail = user.getEmail();
         email.setText("Du er logget ind som:\n" + displayEmail);
     }
-}
+
+
+    public void ButtonCollectActivity (View view) {
+            finish();
+        Intent i = new Intent (this, CollectActivity.class);
+            startActivity(i);
+        }
+    }
+

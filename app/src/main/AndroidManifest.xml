@@ -19,7 +19,8 @@
         <activity android:name=".SignUpActivity" />
         <activity android:name=".ProfileActivity" />
         <activity android:name=".UserDataActivity" />
-        <activity android:name=".EditUserDataActivity"></activity>
+        <activity android:name=".EditUserDataActivity" />
+        <activity android:name=".CollectActivity"></activity>
     </application>
 
 </manifest>

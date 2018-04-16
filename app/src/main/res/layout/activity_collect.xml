@@ -13,10 +13,11 @@
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
-        android:text="TextView"
+        android:gravity="center"
+        android:hint="Indtast art code"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/textView_DisplaySelectedArtwork" />
 
     <Button
         android:id="@+id/btn_addCode"
@@ -29,4 +30,44 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textViewArtworkCode" />
+
+    <Button
+        android:id="@+id/btn_artwork1"
+        android:layout_width="103dp"
+        android:layout_height="108dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="32dp"
+        android:text="Artwork 1"
+        android:onClick="artwork1Select"
+        app:layout_constraintEnd_toStartOf="@+id/btn_addCode"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btn_addCode" />
+
+    <Button
+        android:id="@+id/btn_artwork2"
+        android:layout_width="108dp"
+        android:layout_height="103dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="32dp"
+        android:text="Artwork 2"
+        android:onClick="artwork2Select"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/btn_addCode"
+        app:layout_constraintTop_toBottomOf="@+id/btn_addCode" />
+
+    <TextView
+        android:id="@+id/textView_DisplaySelectedArtwork"
+        android:layout_width="107dp"
+        android:layout_height="39dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="24dp"
+        android:text="Select artwork"
+        android:gravity="center"
+        android:onClick="Display_selectedartwork"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 </android.support.constraint.ConstraintLayout>

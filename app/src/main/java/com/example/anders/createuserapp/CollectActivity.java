@@ -90,7 +90,7 @@ public class CollectActivity extends AppCompatActivity implements View.OnClickLi
     }
 
     protected void onData(DataSnapshot dataSnapshot) {
-            final String passcode1 = inputAnswer.getText().toString();
+            final String passcode1 = inputAnswer.getText().toString().trim();
             String artwork = (String) dataSnapshot.child("artworkss").child(""+artwork_string).child("code").getValue();
                 if (passcode1.equals(artwork)) {
                     //do something

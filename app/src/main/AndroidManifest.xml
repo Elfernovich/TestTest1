@@ -20,7 +20,8 @@
         <activity android:name=".ProfileActivity" />
         <activity android:name=".UserDataActivity" />
         <activity android:name=".EditUserDataActivity" />
-        <activity android:name=".CollectActivity"></activity>
+        <activity android:name=".CollectActivity" />
+        <activity android:name=".CollectOverviewActivity"></activity>
     </application>
 
 </manifest>

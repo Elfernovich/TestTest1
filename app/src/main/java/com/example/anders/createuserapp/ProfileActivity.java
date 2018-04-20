@@ -86,7 +86,7 @@ public class ProfileActivity extends AppCompatActivity{
 
     public void ButtonCollectActivity (View view) {
             finish();
-        Intent i = new Intent (this, CollectActivity.class);
+        Intent i = new Intent (this, CollectOverviewActivity.class);
             startActivity(i);
         }
     }

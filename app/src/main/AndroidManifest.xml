@@ -21,7 +21,8 @@
         <activity android:name=".UserDataActivity" />
         <activity android:name=".EditUserDataActivity" />
         <activity android:name=".CollectActivity" />
-        <activity android:name=".CollectOverviewActivity"></activity>
+        <activity android:name=".CollectOverviewActivity" />
+        <activity android:name=".CollectArtworkActivity"></activity>
     </application>
 
 </manifest>

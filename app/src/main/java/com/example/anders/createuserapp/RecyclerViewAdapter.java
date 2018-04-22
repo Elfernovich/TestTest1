@@ -44,7 +44,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
         holder.cardView.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v){
-                Intent intent = new Intent(mContext, CollectActivity.class);
+                Intent intent = new Intent(mContext, CollectArtworkActivity.class);
 
                 //passing data to CollectActivity
                 intent.putExtra("ARTWORK_TITLE", mData.get(position).getTitle());

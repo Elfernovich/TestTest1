@@ -1,17 +1,14 @@
 package com.example.anders.createuserapp;
 
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.Button;
-import android.widget.EditText;
 import android.widget.TextView;
-
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -33,6 +30,9 @@ public class ProfileActivity extends AppCompatActivity{
         email = (TextView) findViewById(R.id.textViewEmail);
 
         loadUserInformation();
+
+
+
     }
 
 
@@ -45,6 +45,7 @@ public class ProfileActivity extends AppCompatActivity{
             finish();
             startActivity(new Intent(this, MainActivity.class));
         }
+        UtilityBuilders.buildBottomNavigationView(this);
     }
 
     @Override

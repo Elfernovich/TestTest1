@@ -34,10 +34,10 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
-public class CollectArtworkActivity extends AppCompatActivity implements View.OnClickListener{
+public class CollectArtworkActivityFinished extends AppCompatActivity implements View.OnClickListener{
 
-    private static final String TAG = "CollectArtworkActivity";
-//POGGERS
+    private static final String TAG = "CollectArtworkActivityFinished";
+    //POGGERS
     private FirebaseAuth mAuth;
     private FirebaseDatabase myFirebaseDatabase;
     private DatabaseReference databaseUsers;
@@ -64,7 +64,7 @@ public class CollectArtworkActivity extends AppCompatActivity implements View.On
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_collect_artwork);
+        setContentView(R.layout.activity_collect_artwork_finished);
 
         mAuth = FirebaseAuth.getInstance();
         myFirebaseDatabase = FirebaseDatabase.getInstance();
@@ -136,23 +136,6 @@ public class CollectArtworkActivity extends AppCompatActivity implements View.On
         image_notification = image;
 
 
-        submitBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                databaseArtworks.addListenerForSingleValueEvent(new ValueEventListener() {
-
-                    @Override
-                    public void onDataChange(DataSnapshot dataSnapshot) {
-                        onData(dataSnapshot);
-                    }
-
-                    @Override
-                    public void onCancelled(DatabaseError databaseError) {
-
-                    }
-                });
-            }
-        });
     }
 
 
@@ -172,12 +155,8 @@ public class CollectArtworkActivity extends AppCompatActivity implements View.On
     public void check_database_value(DataSnapshot dataSnapshot) {
 
         boolean check = (boolean) dataSnapshot.child("users").child(userID).child("user_artwork1").getValue();
-        checked = check;
+        checked = (check);
         checked_artwork = checked;
-
-        Intent i = new Intent(CollectArtworkActivity.this, RecyclerViewAdapter.class);
-        i.putExtra("key",check);
-        startActivity(i);
     }
 
     public void calculatedPoints(DataSnapshot dataSnapshot){

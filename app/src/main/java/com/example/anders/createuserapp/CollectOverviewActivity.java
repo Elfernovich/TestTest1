@@ -9,12 +9,15 @@ import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -27,13 +30,19 @@ public class CollectOverviewActivity extends AppCompatActivity {
     private DatabaseReference databaseUsers;
     private FirebaseAuth.AuthStateListener mAuthListener;
     private String userID;
+    private boolean checked_artwork;
 
+    boolean checked;
+
+    TextView editArtworkCode;
 
     List<Artwork> listArtwork;
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_collect_overview);
+
+
 
         mAuth = FirebaseAuth.getInstance();
         myFirebaseDatabase = FirebaseDatabase.getInstance();
@@ -56,19 +65,20 @@ public class CollectOverviewActivity extends AppCompatActivity {
 
         listArtwork = new ArrayList<>();
 
-        listArtwork.add(new Artwork("So Simple", "Michael Kvium", R.drawable.so_simple));
-        listArtwork.add(new Artwork("Social Dream Painting", "Michael Kvium", R.drawable.social_dream_painting));
-        listArtwork.add(new Artwork("Kulturkreds", "Michael Kvium", R.drawable.kulturkreds));
-        listArtwork.add(new Artwork("Naturkreds", "Michael Kvium", R.drawable.naturkreds));
 
-        RecyclerView myRecyclerView = (RecyclerView) findViewById(R.id.recyclerview_id);
-        RecyclerViewAdapter myAdapter = new RecyclerViewAdapter(this, listArtwork);
-        myRecyclerView.setLayoutManager(new GridLayoutManager(this, 2));
-        myRecyclerView.setAdapter(myAdapter);
+            listArtwork.add(new Artwork("So Simple", "Michael Kvium", R.drawable.so_simple));
+            listArtwork.add(new Artwork("Social Dream Painting", "Michael Kvium", R.drawable.social_dream_painting));
+            listArtwork.add(new Artwork("Kulturkreds", "Michael Kvium", R.drawable.kulturkreds));
+            listArtwork.add(new Artwork("Naturkreds", "Michael Kvium", R.drawable.naturkreds));
+
+            RecyclerView myRecyclerView = (RecyclerView) findViewById(R.id.recyclerview_id);
+            RecyclerViewAdapter myAdapter = new RecyclerViewAdapter(this, listArtwork);
+            myRecyclerView.setLayoutManager(new GridLayoutManager(this, 2));
+            myRecyclerView.setAdapter(myAdapter);
+        }
 
 
 
-    }
 
 
     @Override
@@ -81,6 +91,7 @@ public class CollectOverviewActivity extends AppCompatActivity {
             startActivity(new Intent(this, MainActivity.class));
         }
     }
+
 
     protected void onData(DataSnapshot datasnapshot){
 

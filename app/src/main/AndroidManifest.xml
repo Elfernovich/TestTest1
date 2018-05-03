@@ -25,6 +25,7 @@
         <activity android:name=".CollectActivity" />
         <activity android:name=".CollectOverviewActivity" />
         <activity android:name=".CollectArtworkActivity" />
+        <activity android:name=".CollectArtworkActivityFinished"/>
         <activity android:name=".LeaderboardActivity"></activity>
     </application>
 

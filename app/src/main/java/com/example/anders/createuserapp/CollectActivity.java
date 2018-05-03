@@ -40,7 +40,7 @@ public class CollectActivity extends AppCompatActivity implements View.OnClickLi
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_collect);
+
 
 
         mAuth = FirebaseAuth.getInstance();
@@ -50,12 +50,6 @@ public class CollectActivity extends AppCompatActivity implements View.OnClickLi
         FirebaseUser usersID = mAuth.getCurrentUser();
         userID = usersID.getUid();
 
-
-        inputAnswer = (EditText) findViewById(R.id.textViewArtworkCode);
-        findViewById(R.id.btn_addCode).setOnClickListener(this);
-        submitBtn = (Button) findViewById(R.id.btn_addCode);
-        btn_artwork = (Button) findViewById(R.id.btn_artwork1);
-        btn_artwork2 = (Button) findViewById(R.id.btn_artwork2);
 
 
 
@@ -97,8 +91,7 @@ public class CollectActivity extends AppCompatActivity implements View.OnClickLi
             final String passcode1 = inputAnswer.getText().toString().trim();
             String artwork = (String) dataSnapshot.child("artworkss").child(""+artwork_string).child("code").getValue();
                 if (passcode1.equals(artwork)) {
-                    //do something
-                    Toast.makeText(getApplicationContext(), "Nice", Toast.LENGTH_LONG).show();
+                    //do something                    Toast.makeText(getApplicationContext(), "Nice", Toast.LENGTH_LONG).show();
 
 
                 } else if (!passcode1.equals(artwork)) {

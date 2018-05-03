@@ -2,6 +2,8 @@ package com.example.anders.createuserapp;
 
 import android.content.Context;
 import android.content.Intent;
+import android.os.Bundle;
+import android.provider.ContactsContract;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
@@ -11,6 +13,8 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.google.firebase.database.DataSnapshot;
+
 import org.w3c.dom.Text;
 
 import java.util.List;
@@ -19,6 +23,10 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
 
     private Context mContext;
     private List<Artwork> mData;
+    private boolean checked_artwork;
+    private String userID;
+
+    boolean checked = true;
 
     public RecyclerViewAdapter(Context mContext, List<Artwork> mData){
         this.mContext = mContext;
@@ -36,8 +44,11 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
         return new MyViewHolder(view);
     }
 
-    @Override
+
     public void onBindViewHolder(@NonNull MyViewHolder holder, final int position) {
+        final boolean checking = checked;
+
+
 
         holder.textView_Artwork_Title.setText(mData.get(position).getTitle());
         holder.img_Artwork_Thumbnail.setImageResource(mData.get(position).getThumbnail());
@@ -45,16 +56,27 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
             @Override
             public void onClick(View v){
                 Intent intent = new Intent(mContext, CollectArtworkActivity.class);
+                Intent intent2 = new Intent(mContext, CollectArtworkActivityFinished.class);
 
                 //passing data to CollectActivity
                 intent.putExtra("ARTWORK_TITLE", mData.get(position).getTitle());
                 intent.putExtra("ARTWORK_ARTIST", mData.get(position).getArtist());
                 intent.putExtra("THUMBNAIL", mData.get(position).getThumbnail());
+
+                intent2.putExtra("ARTWORK_TITLE", mData.get(position).getTitle());
+                intent2.putExtra("ARTWORK_ARTIST", mData.get(position).getArtist());
+                intent2.putExtra("THUMBNAIL", mData.get(position).getThumbnail());
+
                 //start activity
+
+        if (checking == true){
                 mContext.startActivity(intent);
             }
+            else if(checking == false){
+                mContext.startActivity(intent2);
+        }
+        }
         });
-
     }
 
     @Override

@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".CollectArtworkActivity"
+    tools:context=".CollectArtworkActivityFinished"
     android:background="#fcfcfc"
     android:id="@+id/collect_artwork_linearlayout">
 
@@ -52,33 +52,16 @@
                 android:text="Artist"
                 android:padding="8dp"
                 android:textColor="@color/colorPrimary"/>
-            
+
             <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="INDTAST KUNSTVÆRKETS KODE"
-                android:textColor="@color/colorPrimary"
-                android:layout_marginBottom="10dp"
-                android:layout_marginTop="20dp"/>
-
-            <EditText
-                android:id="@+id/editTextArtworkCode"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:gravity="center"
-                android:hint="ENTER ART CODE"
-                android:textColor="@color/colorBlack" />
-
-            
-            <Button
-                android:id="@+id/btn_enter_art_code"
-                android:text="Gem kunstværk"
+                android:id="@+id/artwork_info"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginTop="10dp"
-                android:layout_marginLeft="15dp"
-                android:layout_marginRight="15dp"
-                android:layout_marginBottom="10dp"/>
+                android:layout_height="wrap_content"
+                android:padding="8dp"
+                android:textAlignment="center"
+                android:text="Artwork has allready been collected. Press the picture, and you can listen to awesome art info!"
+                android:textColor="@color/colorPrimary" />
+
 
         </LinearLayout>
 

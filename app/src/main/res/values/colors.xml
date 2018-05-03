@@ -4,6 +4,6 @@
     <color name="colorPrimaryDark">#0288D1</color>
     <color name="colorAccent">#ff4081</color>
     <color name="colorBlack">#000000</color>
-    <color name="trans">#00000000 </color>
+    <color name="trans">#ccffffff</color>
     <color name="grey">#7c7878</color>
 </resources>

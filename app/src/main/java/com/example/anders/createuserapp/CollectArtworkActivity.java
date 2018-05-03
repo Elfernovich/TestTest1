@@ -3,6 +3,7 @@ package com.example.anders.createuserapp;
 import android.content.Intent;
 import android.media.Image;
 import android.os.Build;
+import android.provider.ContactsContract;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -39,9 +40,12 @@ public class CollectArtworkActivity extends AppCompatActivity implements View.On
 
     private FirebaseAuth mAuth;
     private FirebaseDatabase myFirebaseDatabase;
+    private DatabaseReference databaseUsers;
     private DatabaseReference databaseArtworks;
     private FirebaseAuth.AuthStateListener mAuthListener;
     private String userID;
+    private int pointsint;
+    private boolean checked_artwork;
 
     private TextView textViewTitle, textViewArtist;
     private ImageView img, img_reward;
@@ -49,7 +53,9 @@ public class CollectArtworkActivity extends AppCompatActivity implements View.On
     Button submitBtn;
     String artwork_name;
     int image_notification;
-
+    int currentpoints;
+    int adding_points_from_artwork = 10;
+    boolean checked;
     //Notification
     private PopupWindow popupWindow;
     private LayoutInflater layoutInflater;
@@ -63,6 +69,7 @@ public class CollectArtworkActivity extends AppCompatActivity implements View.On
         mAuth = FirebaseAuth.getInstance();
         myFirebaseDatabase = FirebaseDatabase.getInstance();
         databaseArtworks = myFirebaseDatabase.getReference();
+        databaseUsers = myFirebaseDatabase.getReference();
         FirebaseUser usersID = mAuth.getCurrentUser();
         userID = usersID.getUid();
 
@@ -78,6 +85,7 @@ public class CollectArtworkActivity extends AppCompatActivity implements View.On
         setSupportActionBar(toolbar);
 
 
+
         mAuthListener = new FirebaseAuth.AuthStateListener() {
             @Override
             public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
@@ -90,7 +98,29 @@ public class CollectArtworkActivity extends AppCompatActivity implements View.On
         };
 
 
+        databaseUsers.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                calculatedPoints(dataSnapshot);
+            }
 
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+
+        databaseUsers.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                check_database_value(dataSnapshot);
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
 
         //Receive data
         Intent intent = getIntent();
@@ -110,6 +140,7 @@ public class CollectArtworkActivity extends AppCompatActivity implements View.On
             @Override
             public void onClick(View v) {
                 databaseArtworks.addListenerForSingleValueEvent(new ValueEventListener() {
+
                     @Override
                     public void onDataChange(DataSnapshot dataSnapshot) {
                         onData(dataSnapshot);
@@ -124,6 +155,8 @@ public class CollectArtworkActivity extends AppCompatActivity implements View.On
         });
     }
 
+
+
     //If the user is not logged in he will be directed to the MainActivity.class
     @Override
     protected void onStart() {
@@ -136,11 +169,35 @@ public class CollectArtworkActivity extends AppCompatActivity implements View.On
     }
 
 
+    public void check_database_value(DataSnapshot dataSnapshot) {
+
+        boolean check = (boolean) dataSnapshot.child("users").child(userID).child("user_artwork1").getValue();
+        checked = (check);
+         checked_artwork = checked;
+    }
+
+    public void calculatedPoints(DataSnapshot dataSnapshot){
+
+        String points = (String) dataSnapshot.child("users").child(userID).child("points").getValue().toString();
+        pointsint = Integer.parseInt(points);
+        currentpoints = pointsint+adding_points_from_artwork;
+    }
+
+    private void addPoints() {
+        databaseUsers.child("users").child(userID).child("points").setValue(currentpoints);
+    }
+
+    private void changeArtworkvalue() {
+        databaseUsers.child("users").child(userID).child("user_artwork1").setValue(false);
+    }
 
     protected void onData(DataSnapshot dataSnapshot) {
+        boolean database_value = checked_artwork;
         final String passcode1 = inputAnswer.getText().toString().trim();
         String artwork = (String) dataSnapshot.child("artworkss").child(""+artwork_name).child("code").getValue();
-        if (passcode1.equals(artwork)) {
+        if ((passcode1.equals(artwork)) && (database_value == true)) {
+            addPoints();
+            changeArtworkvalue();
             //do something
             layoutInflater = (LayoutInflater) getApplicationContext().getSystemService(LAYOUT_INFLATER_SERVICE);
             ViewGroup container = (ViewGroup) layoutInflater.inflate(R.layout.notification_layout,null);

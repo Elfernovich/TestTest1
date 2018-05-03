@@ -1,5 +1,7 @@
 package com.example.anders.createuserapp;
 
+import android.graphics.Point;
+import android.provider.ContactsContract;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -25,6 +27,7 @@ public class CollectActivity extends AppCompatActivity implements View.OnClickLi
     private FirebaseAuth mAuth;
     private FirebaseDatabase myFirebaseDatabase;
     private DatabaseReference databaseArtworks;
+    private DatabaseReference databaseUsers;
     private FirebaseAuth.AuthStateListener mAuthListener;
     private String userID;
     Button submitBtn;
@@ -43,6 +46,7 @@ public class CollectActivity extends AppCompatActivity implements View.OnClickLi
         mAuth = FirebaseAuth.getInstance();
         myFirebaseDatabase = FirebaseDatabase.getInstance();
         databaseArtworks = myFirebaseDatabase.getReference();
+        databaseUsers = myFirebaseDatabase.getReference();
         FirebaseUser usersID = mAuth.getCurrentUser();
         userID = usersID.getUid();
 

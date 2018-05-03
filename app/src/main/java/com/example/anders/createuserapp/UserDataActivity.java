@@ -25,6 +25,7 @@ public class UserDataActivity extends AppCompatActivity implements View.OnClickL
     EditText lastName;
     EditText memberNumber;
     private String userID;
+    //int points;
 
 
     DatabaseReference databaseUsers;
@@ -71,13 +72,19 @@ public class UserDataActivity extends AppCompatActivity implements View.OnClickL
         String first_Name = firstName.getText().toString().trim();
         String last_Name = lastName.getText().toString().trim();
         String member_Number = memberNumber.getText().toString().trim();
+        //points = 0;
+
 
         if (!TextUtils.isEmpty(first_Name) && (!TextUtils.isEmpty(last_Name))) {
 
             String displayEmail = user_Email.getEmail();
             String displayUserID = usersID.getUid();
+            int points = 0;
+            Boolean user_artwork1 = true;
+            Boolean user_artwork2 = true;
+            Boolean user_artwork3 = true;
 
-            User user = new User(displayEmail, first_Name, last_Name, member_Number);
+            User user = new User(displayEmail, first_Name, last_Name, member_Number, points, user_artwork1, user_artwork2, user_artwork3);
             databaseUsers.child("users").child(displayUserID).setValue(user);
             //databaseUsers.setValue(user);
 

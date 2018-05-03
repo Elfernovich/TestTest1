@@ -37,7 +37,7 @@ import com.google.firebase.database.ValueEventListener;
 public class CollectArtworkActivity extends AppCompatActivity implements View.OnClickListener{
 
     private static final String TAG = "CollectArtworkActivity";
-
+//POGGERS
     private FirebaseAuth mAuth;
     private FirebaseDatabase myFirebaseDatabase;
     private DatabaseReference databaseUsers;

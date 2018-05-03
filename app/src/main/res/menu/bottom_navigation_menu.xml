@@ -5,15 +5,18 @@
         android:id="@+id/id_profile"
         android:icon="@drawable/ic_profile"
         android:title="Profile"></item>
-    <item
-        android:id="@+id/id_reward"
-        android:icon="@drawable/ic_reward"
-        android:title="Reward"></item>
+
     <item
         android:id="@+id/id_collect"
         android:icon="@drawable/ic_collect"
         android:title="Collect">
 
     </item>
+
+    <item
+        android:id="@+id/id_reward"
+        android:icon="@drawable/ic_reward"
+        android:title="Reward"></item>
+
 
 </menu>

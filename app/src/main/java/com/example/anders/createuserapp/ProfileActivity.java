@@ -45,6 +45,16 @@ public class ProfileActivity extends AppCompatActivity{
         setProgressBar();
 
 
+        mAuthListener = new FirebaseAuth.AuthStateListener() {
+            @Override
+            public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
+                FirebaseUser user = firebaseAuth.getCurrentUser();
+                if (user != null) {
+                    Log.d(TAG, "onAuthStateChanged:signed_in" + user.getUid());
+                    //String userID = user.getUid();
+                }
+            }
+        };
 
             //BottomNavigation Bar
             bottomNavigationView = (BottomNavigationView) findViewById(R.id.bottomNavView_Bar);
@@ -74,16 +84,7 @@ public class ProfileActivity extends AppCompatActivity{
                 }
             });
 
-        mAuthListener = new FirebaseAuth.AuthStateListener() {
-            @Override
-            public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
-                FirebaseUser user = firebaseAuth.getCurrentUser();
-                if (user != null){
-                    Log.d(TAG, "onAuthStateChanged:signed_in" + user.getUid());
-                    //String userID = user.getUid();
-                }
-            }
-        };
+
         }
 
 
@@ -142,7 +143,7 @@ public class ProfileActivity extends AppCompatActivity{
 
     public void ButtonCollectActivity (View view) {
             finish();
-        Intent i = new Intent (this, CollectOverviewActivity.class);
+        Intent i = new Intent (this, LeaderboardActivity.class);
             startActivity(i);
         }
     }

@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ProfileActivity">
+    tools:context=".LeaderboardActivity">
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -39,38 +39,23 @@
 
 
             <TextView
-                android:id="@+id/textViewEmail"
-                android:layout_width="wrap_content"
+                android:id="@+id/textViewLeaderboard"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="8dp"
                 android:layout_marginTop="8dp"
-                android:text="TextView" />
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:textAlignment="center"
+                android:text="Leaderboard" />
 
-            <Button
-                android:id="@+id/btn_collectActivity"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentStart="true"
-                android:layout_alignParentTop="true"
-                android:layout_marginStart="133dp"
-                android:layout_marginTop="142dp"
-                android:onClick="ButtonCollectActivity"
-                android:text="Button" />
-
-
-            <ProgressBar
-                android:id="@+id/progressBar"
-                style="@android:style/Widget.ProgressBar.Horizontal"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_alignParentBottom="true"
-                android:layout_centerHorizontal="true"
-                android:layout_marginBottom="135dp"
-                android:layout_marginLeft="8dp"
-                android:layout_marginRight="8dp"
-
-                android:minHeight="50dp"
-                android:progressDrawable="@drawable/myprogressbar" />
+        <ListView
+            android:id="@+id/listViewLeaderboard"
+            android:layout_marginTop="40dp"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"></ListView>
 
         </RelativeLayout>
 
@@ -91,4 +76,5 @@
         </RelativeLayout>
 
     </RelativeLayout>
+
 </android.support.design.widget.CoordinatorLayout>

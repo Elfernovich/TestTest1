@@ -78,7 +78,7 @@ public class UserDataActivity extends AppCompatActivity implements View.OnClickL
         if (!TextUtils.isEmpty(first_Name) && (!TextUtils.isEmpty(last_Name))) {
 
             String displayEmail = user_Email.getEmail();
-            String displayUserID = usersID.getUid();
+            String displayUserID = userID;
             int points = 0;
             Boolean user_artwork1 = true;
             Boolean user_artwork2 = true;

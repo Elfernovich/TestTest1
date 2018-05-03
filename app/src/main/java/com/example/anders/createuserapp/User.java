@@ -22,6 +22,13 @@ public class User {
         this.memberNumber = memberNumber;
     }
 
+    public User(String email, String firstName, String lastName, String memberNumber) {
+        this.email = email;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.memberNumber = memberNumber;
+    }
+
     public User(String email, String firstName, String lastName, String memberNumber, int points, boolean user_artwork1, boolean user_artwork2, boolean user_artwork3) {
         this.email = email;
         this.firstName = firstName;

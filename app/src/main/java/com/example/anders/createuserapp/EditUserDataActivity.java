@@ -95,7 +95,7 @@ public class EditUserDataActivity extends AppCompatActivity {
         // database and pick the data of the current logged in user
         for(DataSnapshot ds : dataSnapshot.getChildren()){
             User userInfo = new User();
-            userInfo.setEmail(ds.child(userID).getValue(User.class).getEmail()); // set the email
+            userInfo.setEmail(ds.child(userID).child("email").getValue(User.class).getEmail()); // set the email
             userInfo.setFirstName(ds.child(userID).getValue(User.class).getFirstName()); // set the first name
             userInfo.setLastName(ds.child(userID).getValue(User.class).getLastName()); // set the last name
             userInfo.setMemberNumber(ds.child(userID).getValue(User.class).getMemberNumber()); // set the member number

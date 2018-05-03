@@ -7,6 +7,7 @@ import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -18,8 +19,10 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
 public class ProfileActivity extends AppCompatActivity{
+    private static final String TAG = "ProfileActivity";
 
     private FirebaseAuth mAuth;
+    private FirebaseAuth.AuthStateListener mAuthListener;
     TextView email;
     ProgressBar prgBar;
     BottomNavigationView bottomNavigationView;
@@ -39,7 +42,7 @@ public class ProfileActivity extends AppCompatActivity{
 
 
         loadUserInformation();
-        prgBar.setProgress(80);
+        setProgressBar();
 
 
 
@@ -70,6 +73,17 @@ public class ProfileActivity extends AppCompatActivity{
                     return false;
                 }
             });
+
+        mAuthListener = new FirebaseAuth.AuthStateListener() {
+            @Override
+            public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
+                FirebaseUser user = firebaseAuth.getCurrentUser();
+                if (user != null){
+                    Log.d(TAG, "onAuthStateChanged:signed_in" + user.getUid());
+                    //String userID = user.getUid();
+                }
+            }
+        };
         }
 
 
@@ -123,7 +137,7 @@ public class ProfileActivity extends AppCompatActivity{
     }
 
     public void setProgressBar(){
-        setProgress(80);
+        prgBar.setProgress(80);
     }
 
     public void ButtonCollectActivity (View view) {

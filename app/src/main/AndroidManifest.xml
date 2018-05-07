@@ -11,7 +11,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".MainActivity">
+        <activity android:name=".WelcomeActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -25,8 +25,9 @@
         <activity android:name=".CollectActivity" />
         <activity android:name=".CollectOverviewActivity" />
         <activity android:name=".CollectArtworkActivity" />
-        <activity android:name=".CollectArtworkActivityFinished"/>
-        <activity android:name=".LeaderboardActivity"></activity>
+        <activity android:name=".CollectArtworkActivityFinished" />
+        <activity android:name=".LeaderboardActivity" />
+        <activity android:name=".MainActivity"></activity>
     </application>
 
 </manifest>

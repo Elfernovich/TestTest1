@@ -5,8 +5,13 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Patterns;
+import android.view.Gravity;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.EditText;
+import android.widget.LinearLayout;
+import android.widget.PopupWindow;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
@@ -20,6 +25,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     ProgressBar progressBar;
     EditText editTextEmail, editTextPassword;
 
+
     // Declare an instance of FirebaseAuth
     private FirebaseAuth mAuth;
 
@@ -30,6 +36,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+
         //Initialize the FirebaseAuth instance
         mAuth = FirebaseAuth.getInstance();
 
@@ -39,6 +46,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         findViewById(R.id.textViewSignup).setOnClickListener(this);
         findViewById(R.id.btn_Login).setOnClickListener(this);
+
+
 
     }
 
@@ -98,8 +107,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         if(mAuth.getCurrentUser() != null){
             finish();
-            startActivity(new Intent(this, ProfileActivity.class));
+            startActivity(new Intent (this, ProfileActivity.class));
         }
+
     }
 
     @Override

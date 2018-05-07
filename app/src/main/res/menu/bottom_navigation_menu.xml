@@ -4,19 +4,19 @@
     <item
         android:id="@+id/id_profile"
         android:icon="@drawable/ic_profile"
-        android:title="Profile"></item>
+        android:title="Profil"></item>
 
     <item
         android:id="@+id/id_collect"
         android:icon="@drawable/ic_collect"
-        android:title="Collect">
+        android:title="Kunstværker">
 
     </item>
 
     <item
         android:id="@+id/id_reward"
         android:icon="@drawable/ic_reward"
-        android:title="Reward"></item>
+        android:title="Leaderboard"></item>
 //
 
 </menu>

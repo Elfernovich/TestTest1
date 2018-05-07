@@ -74,8 +74,15 @@ public class ProfileActivity extends AppCompatActivity{
                             break;
 
                         case R.id.id_collect:
-                            Intent intent3 = new Intent (ProfileActivity.this, CollectOverviewActivity.class);
-                            intent3.addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
+                            Intent intent2 = new Intent(ProfileActivity.this, CollectOverviewActivity.class);
+                            intent2.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                            startActivity(intent2);
+                            //activity.startActivity(new Intent(activity, ProfileActivity.class));
+                            break;
+
+                        case R.id.id_reward:
+                            Intent intent3 = new Intent (ProfileActivity.this, LeaderboardActivity.class);
+                            intent3.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                             startActivity(intent3);
                             //mIntent.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
                             break;

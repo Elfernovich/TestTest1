@@ -68,8 +68,8 @@ public class LeaderboardActivity extends AppCompatActivity {
         //BottomNavigation Bar
         bottomNavigationView = (BottomNavigationView) findViewById(R.id.bottomNavView_Bar);
         Menu menu = bottomNavigationView.getMenu();
-        MenuItem menuItem = menu.getItem(0);
-        menuItem.setChecked(false);
+        MenuItem menuItem = menu.getItem(2);
+        menuItem.setChecked(true);
 
         bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
@@ -83,8 +83,15 @@ public class LeaderboardActivity extends AppCompatActivity {
                         break;
 
                     case R.id.id_collect:
-                        Intent intent3 = new Intent (LeaderboardActivity.this, CollectOverviewActivity.class);
-                        intent3.addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
+                        Intent intent2 = new Intent(LeaderboardActivity.this, CollectOverviewActivity.class);
+                        intent2.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                        startActivity(intent2);
+                        //activity.startActivity(new Intent(activity, ProfileActivity.class));
+                        break;
+
+                    case R.id.id_reward:
+                        Intent intent3 = new Intent (LeaderboardActivity.this, LeaderboardActivity.class);
+                        intent3.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                         startActivity(intent3);
                         //mIntent.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
                         break;

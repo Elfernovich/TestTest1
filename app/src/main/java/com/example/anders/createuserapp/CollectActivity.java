@@ -84,7 +84,7 @@ public class CollectActivity extends AppCompatActivity implements View.OnClickLi
             }
         });
 
-
+//
     }
 
     protected void onData(DataSnapshot dataSnapshot) {

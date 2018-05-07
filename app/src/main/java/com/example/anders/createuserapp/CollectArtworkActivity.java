@@ -168,7 +168,7 @@ public class CollectArtworkActivity extends AppCompatActivity implements View.On
         }
     }
 
-
+//
     public void check_database_value(DataSnapshot dataSnapshot) {
 
         boolean check = (boolean) dataSnapshot.child("users").child(userID).child("user_artwork1").getValue();

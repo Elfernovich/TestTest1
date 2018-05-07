@@ -26,7 +26,6 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
     private boolean checked_artwork;
     private String userID;
 
-    boolean checked = true;
 
     public RecyclerViewAdapter(Context mContext, List<Artwork> mData){
         this.mContext = mContext;
@@ -46,9 +45,6 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
 
 
     public void onBindViewHolder(@NonNull MyViewHolder holder, final int position) {
-        final boolean checking = checked;
-
-
 
         holder.textView_Artwork_Title.setText(mData.get(position).getTitle());
         holder.img_Artwork_Thumbnail.setImageResource(mData.get(position).getThumbnail());
@@ -56,25 +52,18 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
             @Override
             public void onClick(View v){
                 Intent intent = new Intent(mContext, CollectArtworkActivity.class);
-                Intent intent2 = new Intent(mContext, CollectArtworkActivityFinished.class);
 
                 //passing data to CollectActivity
                 intent.putExtra("ARTWORK_TITLE", mData.get(position).getTitle());
                 intent.putExtra("ARTWORK_ARTIST", mData.get(position).getArtist());
                 intent.putExtra("THUMBNAIL", mData.get(position).getThumbnail());
+                intent.putExtra("ID", mData.get(position).getID());
 
-                intent2.putExtra("ARTWORK_TITLE", mData.get(position).getTitle());
-                intent2.putExtra("ARTWORK_ARTIST", mData.get(position).getArtist());
-                intent2.putExtra("THUMBNAIL", mData.get(position).getThumbnail());
 
                 //start activity
 
-        if (checking == true){
                 mContext.startActivity(intent);
-            }
-            else if(checking == false){
-                mContext.startActivity(intent2);
-        }
+
         }
         });
     }

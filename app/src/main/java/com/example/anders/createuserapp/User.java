@@ -1,9 +1,10 @@
 
 package com.example.anders.createuserapp;
 public class User {
-    Boolean user_artwork1;
-    Boolean user_artwork2;
-    Boolean user_artwork3;
+    Boolean artwork1;
+    Boolean artwork2;
+    Boolean artwork3;
+    Boolean artwork4;
     String email;
     String firstName;
     String lastName;
@@ -11,8 +12,7 @@ public class User {
     int points;
 
 
-
-    public User(){
+    public User() {
 
     }
 
@@ -29,83 +29,98 @@ public class User {
         this.memberNumber = memberNumber;
     }
 
-    public User(String email, String firstName, String lastName, String memberNumber, int points, boolean user_artwork1, boolean user_artwork2, boolean user_artwork3) {
+    public User(String email, String firstName, String lastName, String memberNumber, int points, boolean artwork1, boolean artwork2,
+                boolean artwork3, boolean artwork4) {
+
         this.email = email;
         this.firstName = firstName;
         this.lastName = lastName;
         this.memberNumber = memberNumber;
         this.points = points;
-        this.user_artwork1 = user_artwork1;
-        this.user_artwork2 = user_artwork2;
-        this.user_artwork3 = user_artwork3;
+        this.artwork1 = artwork1;
+        this.artwork2 = artwork2;
+        this.artwork3 = artwork3;
+        this.artwork4 = artwork4;
 
     }
 
-
-
-    public Boolean getUser_artwork1() {
-        return user_artwork1;
+    public Boolean getArtwork1() {
+        return artwork1;
     }
 
-    public Boolean getUser_artwork2() {
-        return user_artwork2;
+    public void setArtwork1(Boolean artwork1) {
+        this.artwork1 = artwork1;
     }
 
-    public Boolean getUser_artwork3() {
-        return user_artwork3;
+    public Boolean getArtwork2() {
+        return artwork2;
     }
 
-    public String getFirstName() {
-        return firstName;
+    public void setArtwork2(Boolean artwork2) {
+        this.artwork2 = artwork2;
     }
 
-    public String getLastName() {
-        return lastName;
+    public Boolean getArtwork3() {
+        return artwork3;
     }
 
-    public String getMemberNumber() {
-        return memberNumber;
+    public void setArtwork3(Boolean artwork3) {
+        this.artwork3 = artwork3;
+    }
+
+    public Boolean getArtwork4() {
+        return artwork4;
+    }
+
+    public void setArtwork4(Boolean artwork4) {
+        this.artwork4 = artwork4;
     }
 
     public String getEmail() {
         return email;
     }
 
-    public int getPoints() {
-        return points;
+    public void setEmail(String email) {
+        this.email = email;
     }
 
-    public void setUser_artwork3(Boolean user_artwork3) {
-        this.user_artwork3 = user_artwork3;
-    }
-
-    public void setUser_artwork2(Boolean user_artwork2) {
-        this.user_artwork2 = user_artwork2;
-    }
-
-    public void setUser_artwork1(Boolean user_artwork1) {
-        this.user_artwork1 = user_artwork1;
-    }
-
-    public void setPoints(int points) {
-        this.points = points;
+    public String getFirstName() {
+        return firstName;
     }
 
     public void setFirstName(String firstName) {
         this.firstName = firstName;
     }
 
+    public String getLastName() {
+        return lastName;
+    }
+
     public void setLastName(String lastName) {
         this.lastName = lastName;
+    }
+
+    public String getMemberNumber() {
+        return memberNumber;
     }
 
     public void setMemberNumber(String memberNumber) {
         this.memberNumber = memberNumber;
     }
 
-    public void setEmail(String email) {
-        this.email = email;
+    public int getPoints() {
+        return points;
+    }
+
+    public void setPoints(int points) {
+        this.points = points;
     }
 }
+
+
+
+
+
+
 
 

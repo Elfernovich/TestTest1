@@ -4,6 +4,7 @@ public class Artwork {
 
     private String Title;
     private String Artist;
+    private String ID;
     private int Thumbnail;
 
     //base constructor
@@ -11,11 +12,16 @@ public class Artwork {
 
     }
 
-    public Artwork(String title, String artist, int thumbnail){
+    public Artwork(String title, String artist, String id, int thumbnail){
         Title = title;
         Artist = artist;
+        ID = id;
         Thumbnail = thumbnail;
     }
+
+    public String getID() {return ID;}
+
+    public void setID(String ID) {this.ID = ID;}
 
     public String getTitle() {
         return Title;

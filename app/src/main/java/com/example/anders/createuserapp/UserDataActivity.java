@@ -80,11 +80,12 @@ public class UserDataActivity extends AppCompatActivity implements View.OnClickL
             String displayEmail = user_Email.getEmail();
             String displayUserID = userID;
             int points = 0;
-            Boolean user_artwork1 = true;
-            Boolean user_artwork2 = true;
-            Boolean user_artwork3 = true;
+            Boolean artwork1 = true;
+            Boolean artwork2 = true;
+            Boolean artwork3 = true;
+            Boolean artwork4 = true;
 
-            User user = new User(displayEmail, first_Name, last_Name, member_Number, points, user_artwork1, user_artwork2, user_artwork3);
+            User user = new User(displayEmail, first_Name, last_Name, member_Number, points, artwork1, artwork2, artwork3, artwork4);
             databaseUsers.child("users").child(displayUserID).setValue(user);
             //databaseUsers.setValue(user);
 

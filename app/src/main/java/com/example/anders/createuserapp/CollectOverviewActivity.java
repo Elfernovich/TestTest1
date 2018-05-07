@@ -66,10 +66,10 @@ public class CollectOverviewActivity extends AppCompatActivity {
         listArtwork = new ArrayList<>();
 
 
-            listArtwork.add(new Artwork("So Simple", "Michael Kvium", R.drawable.so_simple));
-            listArtwork.add(new Artwork("Social Dream Painting", "Michael Kvium", R.drawable.social_dream_painting));
-            listArtwork.add(new Artwork("Kulturkreds", "Michael Kvium", R.drawable.kulturkreds));
-            listArtwork.add(new Artwork("Naturkreds", "Michael Kvium", R.drawable.naturkreds));
+            listArtwork.add(new Artwork("So Simple", "Michael Kvium","artwork1", R.drawable.so_simple));
+            listArtwork.add(new Artwork("Social Dream Painting", "Michael Kvium","artwork2", R.drawable.social_dream_painting));
+            listArtwork.add(new Artwork("Kulturkreds", "Michael Kvium","artwork3", R.drawable.kulturkreds));
+            listArtwork.add(new Artwork("Naturkreds", "Michael Kvium","artwork4", R.drawable.naturkreds));
 
             RecyclerView myRecyclerView = (RecyclerView) findViewById(R.id.recyclerview_id);
             RecyclerViewAdapter myAdapter = new RecyclerViewAdapter(this, listArtwork);
@@ -89,19 +89,6 @@ public class CollectOverviewActivity extends AppCompatActivity {
         if(mAuth.getCurrentUser() == null){
             finish();
             startActivity(new Intent(this, MainActivity.class));
-        }
-    }
-
-
-    protected void onData(DataSnapshot datasnapshot){
-
-        final Boolean check_artwork_entered = true;
-        String checked = (String) datasnapshot.child("users").child(""+userID).child("user_artwork1").getValue();
-        if (check_artwork_entered.equals(checked)){
-
-        }
-        else{
-
         }
     }
 }

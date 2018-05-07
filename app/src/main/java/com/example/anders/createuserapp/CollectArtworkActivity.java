@@ -52,6 +52,7 @@ public class CollectArtworkActivity extends AppCompatActivity implements View.On
     private EditText inputAnswer;
     Button submitBtn;
     String artwork_name;
+    String artwork_id;
     int image_notification;
     int currentpoints;
     int adding_points_from_artwork = 10;
@@ -127,12 +128,14 @@ public class CollectArtworkActivity extends AppCompatActivity implements View.On
         String Title = intent.getExtras().getString("ARTWORK_TITLE");
         String Artist = intent.getExtras().getString("ARTWORK_ARTIST");
         int image = intent.getExtras().getInt("THUMBNAIL");
+        String ID = intent.getExtras().getString("ID");
 
         //Set values
         textViewTitle.setText(Title);
         textViewArtist.setText(Artist);
         img.setImageResource(image);
         artwork_name = Title;
+        artwork_id = ID;
         image_notification = image;
 
 
@@ -171,13 +174,10 @@ public class CollectArtworkActivity extends AppCompatActivity implements View.On
 //
     public void check_database_value(DataSnapshot dataSnapshot) {
 
-        boolean check = (boolean) dataSnapshot.child("users").child(userID).child("user_artwork1").getValue();
+        boolean check = (boolean) dataSnapshot.child("users").child(userID).child(""+artwork_id).getValue();
         checked = check;
         checked_artwork = checked;
 
-        Intent i = new Intent(CollectArtworkActivity.this, RecyclerViewAdapter.class);
-        i.putExtra("key",check);
-        startActivity(i);
     }
 
     public void calculatedPoints(DataSnapshot dataSnapshot){
@@ -192,13 +192,13 @@ public class CollectArtworkActivity extends AppCompatActivity implements View.On
     }
 
     private void changeArtworkvalue() {
-        databaseUsers.child("users").child(userID).child("user_artwork1").setValue(false);
+        databaseUsers.child("users").child(userID).child(""+artwork_id).setValue(false);
     }
 
     protected void onData(DataSnapshot dataSnapshot) {
         boolean database_value = checked_artwork;
         final String passcode1 = inputAnswer.getText().toString().trim();
-        String artwork = (String) dataSnapshot.child("artworkss").child(""+artwork_name).child("code").getValue();
+        String artwork = (String) dataSnapshot.child("artworkss").child(""+artwork_id).child("code").getValue();
         if ((passcode1.equals(artwork)) && (database_value == true)) {
             addPoints();
             changeArtworkvalue();

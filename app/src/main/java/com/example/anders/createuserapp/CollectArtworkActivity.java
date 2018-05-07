@@ -175,9 +175,9 @@ public class CollectArtworkActivity extends AppCompatActivity implements View.On
         checked = check;
         checked_artwork = checked;
 
-        Intent i = new Intent(CollectArtworkActivity.this, RecyclerViewAdapter.class);
+/*        Intent i = new Intent(CollectArtworkActivity.this, CollectOverviewActivity.class);
         i.putExtra("key",check);
-        startActivity(i);
+        startActivity(i);*/
     }
 
     public void calculatedPoints(DataSnapshot dataSnapshot){

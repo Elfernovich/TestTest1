@@ -12,6 +12,7 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -22,33 +23,87 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.internal.FirebaseAppHelper;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 public class LeaderboardActivity extends AppCompatActivity {
     private static final String TAG = "LeaderboardActivity";
 
     BottomNavigationView bottomNavigationView;
     ListView leaderboard;
-    ArrayList<List> arrayList;
     private String userID;
+    TextView test;
+    final List<User> score = new ArrayList<User>();
 
-    DatabaseReference databaseUsers;
+    //array adapter
+    private ArrayList<String> arrayList = new ArrayList<>();
+    private ArrayList<Integer> arrayList2 = new ArrayList<>();
+    ArrayAdapter<String> adapter;
+
     private FirebaseAuth.AuthStateListener mAuthListener;
     private FirebaseAuth mAuth;
+    DatabaseReference databaseUsers;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_leaderboard);
 
+        leaderboard = (ListView) findViewById(R.id.listViewLeaderboard);
+        test = (TextView) findViewById(R.id.textViewLeaderboard);
+
         mAuth = FirebaseAuth.getInstance();
         FirebaseUser usersID = mAuth.getCurrentUser();
-        databaseUsers = FirebaseDatabase.getInstance().getReference();
         userID = usersID.getUid();
 
-        leaderboard = (ListView) findViewById(R.id.listViewLeaderboard);
+        databaseUsers = FirebaseDatabase.getInstance().getReference().child("users");
+
+        final ArrayAdapter<String> userAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, arrayList);
+        //final ArrayAdapter<Integer> userAdapter2 = new ArrayAdapter<Integer>(this, android.R.layout.simple_list_item_1, arrayList2);
+        leaderboard.setAdapter(userAdapter);
+        //leaderboard.setAdapter(userAdapter2);
+        //adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, arrayList);
+
+
+
+
+        databaseUsers.addChildEventListener(new ChildEventListener() {
+            @Override
+            public void onChildAdded(DataSnapshot dataSnapshot, String s) {
+
+                String value = dataSnapshot.child("firstName").getValue(String.class);
+                Integer points = dataSnapshot.child("points").getValue(Integer.class);
+                arrayList.add(value);
+                //arrayList2.add(points);
+
+                userAdapter.notifyDataSetChanged();
+
+            }
+
+            @Override
+            public void onChildChanged(DataSnapshot dataSnapshot, String s) {
+
+            }
+
+            @Override
+            public void onChildRemoved(DataSnapshot dataSnapshot) {
+
+            }
+
+            @Override
+            public void onChildMoved(DataSnapshot dataSnapshot, String s) {
+
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
 
         //Toolbar at the top
         Toolbar toolbar = findViewById(R.id.toolbar);
@@ -74,7 +129,7 @@ public class LeaderboardActivity extends AppCompatActivity {
         bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-                switch (item.getItemId()){
+                switch (item.getItemId()) {
                     case R.id.id_profile:
                         Intent intent1 = new Intent(LeaderboardActivity.this, ProfileActivity.class);
                         intent1.addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
@@ -90,7 +145,7 @@ public class LeaderboardActivity extends AppCompatActivity {
                         break;
 
                     case R.id.id_reward:
-                        Intent intent3 = new Intent (LeaderboardActivity.this, LeaderboardActivity.class);
+                        Intent intent3 = new Intent(LeaderboardActivity.this, LeaderboardActivity.class);
                         intent3.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                         startActivity(intent3);
                         //mIntent.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
@@ -100,10 +155,17 @@ public class LeaderboardActivity extends AppCompatActivity {
             }
         });
 
-        databaseUsers.addListenerForSingleValueEvent(new ValueEventListener() {
+    }
+      /*  databaseUsers.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                getLeaderbordData(dataSnapshot);
+                //get map of users in datasnapshot
+                //collectScores((Map<Integer, Object>) dataSnapshot.getValue());
+
+                String string = dataSnapshot.getValue(String.class);
+                arrayList.add(string);
+
+                adapter.notifyDataSetChanged();
             }
 
             @Override
@@ -111,46 +173,27 @@ public class LeaderboardActivity extends AppCompatActivity {
 
             }
         });
+
     }
 
-    public void getLeaderbordData(DataSnapshot dataSnapshot){
-        for (DataSnapshot ds : dataSnapshot.getChildren()){
+    private void collectScores(Map<Integer, Object> users){
+        ArrayList<Long> scores = new ArrayList<>();
 
-            final Query leaderboardQuery = databaseUsers.child("users").child("entityID").child("points").
-                    orderByChild("points").limitToFirst(5);
-            leaderboardQuery.addChildEventListener(new ChildEventListener() {
-                @Override
-                public void onChildAdded(DataSnapshot dataSnapshot, String s) {
-
-                    ArrayList<String> arrayList = new ArrayList<>();
-                    //arrayList.add(leaderboardQuery);
-                    //ArrayAdapter adapter = new ArrayAdapter(this, android.R.layout.simple_list_item_1, arrayList);
-                    //leaderboard.setAdapter(adapter);
-                }
-
-                @Override
-                public void onChildChanged(DataSnapshot dataSnapshot, String s) {
-
-                }
-
-                @Override
-                public void onChildRemoved(DataSnapshot dataSnapshot) {
-
-                }
-
-                @Override
-                public void onChildMoved(DataSnapshot dataSnapshot, String s) {
-
-                }
-
-                @Override
-                public void onCancelled(DatabaseError databaseError) {
-
-                }
-            });
+        for (Map.Entry<Integer, Object> entry : users.entrySet()){
+            //Get user map
+            Map singleUser = (Map) entry.getValue();
+            //get points field and append to list
+            scores.add((Long)singleUser.get("points"));
 
         }
-    }
+
+        System.out.println(scores);
+        test.setText(scores.toString());
+
+
+    }*/
+
+
 
 
     //If the user is not logged in he will be directed to the MainActivity.class

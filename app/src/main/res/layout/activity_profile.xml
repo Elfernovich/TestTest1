@@ -36,41 +36,105 @@
             android:layout_above="@id/relLayoutbottomBar">
 
 
-
-
             <TextView
                 android:id="@+id/textViewEmail"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:layout_height="35dp"
                 android:layout_marginEnd="8dp"
                 android:layout_marginTop="8dp"
+                android:gravity="center"
+                android:textSize="22dp"
                 android:text="TextView" />
-
-            <Button
-                android:id="@+id/btn_collectActivity"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentStart="true"
-                android:layout_alignParentTop="true"
-                android:layout_marginStart="133dp"
-                android:layout_marginTop="142dp"
-                android:onClick="ButtonCollectActivity"
-                android:text="Button" />
 
 
             <ProgressBar
                 android:id="@+id/progressBar"
                 style="@android:style/Widget.ProgressBar.Horizontal"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_alignParentBottom="true"
-                android:layout_centerHorizontal="true"
-                android:layout_marginBottom="135dp"
-                android:layout_marginLeft="8dp"
-                android:layout_marginRight="8dp"
+                android:layout_width="155dp"
+                android:layout_height="15dp"
 
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentTop="true"
+                android:layout_marginEnd="32dp"
+                android:layout_marginTop="134dp"
                 android:minHeight="50dp"
                 android:progressDrawable="@drawable/myprogressbar" />
+
+            <ImageView
+                android:id="@+id/imageView_kunstenudstilling"
+                android:layout_width="150dp"
+                android:layout_height="125dp"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentTop="true"
+                android:layout_marginStart="26dp"
+                android:layout_marginTop="80dp"
+                app:srcCompat="@drawable/kunsten_facade" />
+
+            <ImageView
+                android:id="@+id/fake_exhibition"
+                android:layout_width="150dp"
+                android:layout_height="125dp"
+                android:layout_alignParentBottom="true"
+                android:layout_alignStart="@+id/imageView_kunstenudstilling"
+                android:layout_marginBottom="81dp"
+                app:srcCompat="@drawable/kurt_trampedach" />
+
+            <TextView
+                android:id="@+id/textview_progress"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentTop="true"
+                android:layout_alignStart="@+id/progressBar"
+                android:layout_marginTop="158dp"
+                android:text="40/100" />
+
+            <TextView
+                android:id="@+id/textView_exhibition_description"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignStart="@+id/imageView_kunstenudstilling"
+                android:layout_below="@+id/imageView_kunstenudstilling"
+                android:text="Kunsten udstilling"
+                tools:text="Kunsten udstilling" />
+
+            <TextView
+                android:id="@+id/textView_fake_description"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignStart="@+id/imageView_kunstenudstilling"
+                android:layout_below="@+id/fake_exhibition"
+                android:layout_marginTop="-81dp"
+                android:text="Kurt Tramperdach - 12/09" />
+
+            <ProgressBar
+                android:id="@+id/progressBar2"
+                style="?android:attr/progressBarStyleHorizontal"
+                android:layout_width="155dp"
+                android:layout_height="15dp"
+                android:layout_alignParentBottom="true"
+                android:layout_alignStart="@+id/progressBar"
+                android:layout_marginBottom="130dp"
+                android:progressDrawable="@drawable/myprogressbar" />
+
+            <TextView
+                android:id="@+id/textView_fake_progress"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_alignStart="@+id/progressBar"
+                android:layout_marginBottom="102dp"
+                android:text="0/100" />
+
+            <ImageView
+                android:id="@+id/imageview_locked"
+                android:layout_width="151dp"
+                android:layout_height="122dp"
+                android:layout_alignParentStart="true"
+                android:layout_alignTop="@+id/fake_exhibition"
+                android:layout_marginStart="25dp"
+                android:layout_marginTop="1dp"
+                android:alpha="0.75"
+                app:srcCompat="@drawable/locked" />
 
         </RelativeLayout>
 

@@ -186,7 +186,7 @@ public class ProfileActivity extends AppCompatActivity{
         FirebaseUser user = mAuth.getCurrentUser();
 
         String displayEmail = user.getEmail();
-        email.setText("Du er logget ind som:\n" + displayEmail);
+        email.setText("Velkommenn " + displayEmail+"!");
     }
 
 

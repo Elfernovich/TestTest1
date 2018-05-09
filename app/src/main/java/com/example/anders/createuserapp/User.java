@@ -5,6 +5,7 @@ public class User {
     Boolean artwork2;
     Boolean artwork3;
     Boolean artwork4;
+    Boolean artwork5;
     String email;
     String firstName;
     String lastName;
@@ -30,7 +31,7 @@ public class User {
     }
 
     public User(String email, String firstName, String lastName, String memberNumber, int points, boolean artwork1, boolean artwork2,
-                boolean artwork3, boolean artwork4) {
+                boolean artwork3, boolean artwork4, boolean artwork5) {
 
         this.email = email;
         this.firstName = firstName;
@@ -41,6 +42,7 @@ public class User {
         this.artwork2 = artwork2;
         this.artwork3 = artwork3;
         this.artwork4 = artwork4;
+        this.artwork5 = artwork5;
 
     }
 
@@ -66,6 +68,14 @@ public class User {
 
     public void setArtwork3(Boolean artwork3) {
         this.artwork3 = artwork3;
+    }
+
+    public Boolean getArtwork5() {
+        return artwork5;
+    }
+
+    public void setArtwork5(Boolean artwork5) {
+        this.artwork5 = artwork5;
     }
 
     public Boolean getArtwork4() {

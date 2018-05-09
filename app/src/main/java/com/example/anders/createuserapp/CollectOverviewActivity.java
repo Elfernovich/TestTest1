@@ -74,10 +74,11 @@ public class CollectOverviewActivity extends AppCompatActivity {
         listArtwork = new ArrayList<>();
 
 
-            listArtwork.add(new Artwork("So Simple", "Michael Kvium","artwork1", R.drawable.so_simple));
-            listArtwork.add(new Artwork("Social Dream Painting", "Michael Kvium","artwork2", R.drawable.social_dream_painting));
-            listArtwork.add(new Artwork("Kulturkreds", "Michael Kvium","artwork3", R.drawable.kulturkreds));
-            listArtwork.add(new Artwork("Naturkreds", "Michael Kvium","artwork4", R.drawable.naturkreds));
+            listArtwork.add(new Artwork("So Simple", "Michael Kvium","artwork1", R.drawable.sex_hype));
+            listArtwork.add(new Artwork("Social Dream Painting", "Michael Kvium","artwork2", R.drawable.forar_sager));
+            listArtwork.add(new Artwork("Kulturkreds", "Michael Kvium","artwork3", R.drawable.hverdags_ikoner));
+            listArtwork.add(new Artwork("Naturkreds", "Michael Kvium","artwork4", R.drawable.labestift_bombemaskine));
+            listArtwork.add(new Artwork("Naturkreds", "Michael Kvium","artwork4", R.drawable.ornens_ret));
 
             RecyclerView myRecyclerView = (RecyclerView) findViewById(R.id.recyclerview_id);
             RecyclerViewAdapter myAdapter = new RecyclerViewAdapter(this, listArtwork);

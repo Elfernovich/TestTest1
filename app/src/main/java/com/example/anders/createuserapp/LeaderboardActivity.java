@@ -33,7 +33,7 @@ public class LeaderboardActivity extends AppCompatActivity {
     private static final String TAG = "LeaderboardActivity";
 
     BottomNavigationView bottomNavigationView;
-    ListView leaderboard;
+    ListView leaderboardName, leaderboardScore;
     private String userID;
     TextView test;
     final List<User> score = new ArrayList<User>();
@@ -45,42 +45,44 @@ public class LeaderboardActivity extends AppCompatActivity {
 
     private FirebaseAuth.AuthStateListener mAuthListener;
     private FirebaseAuth mAuth;
-    DatabaseReference databaseUsers;
+    Query databaseQuery;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_leaderboard);
+        Log.d(TAG, "onCreate: Started.");
 
-        leaderboard = (ListView) findViewById(R.id.listViewLeaderboard);
-        test = (TextView) findViewById(R.id.textViewLeaderboard);
+        leaderboardName = (ListView) findViewById(R.id.listViewLeaderboardName);
+        leaderboardScore = (ListView) findViewById(R.id.listViewLeaderboardScore);
 
         mAuth = FirebaseAuth.getInstance();
         FirebaseUser usersID = mAuth.getCurrentUser();
         userID = usersID.getUid();
 
-        databaseUsers = FirebaseDatabase.getInstance().getReference().child("users");
+        databaseQuery = FirebaseDatabase.getInstance().getReference().child("users").orderByChild("points").limitToLast(5);
 
         final ArrayAdapter<String> userAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, arrayList);
-        //final ArrayAdapter<Integer> userAdapter2 = new ArrayAdapter<Integer>(this, android.R.layout.simple_list_item_1, arrayList2);
-        leaderboard.setAdapter(userAdapter);
-        //leaderboard.setAdapter(userAdapter2);
+        final ArrayAdapter<Integer> userAdapter2 = new ArrayAdapter<Integer>(this, android.R.layout.simple_list_item_1, arrayList2);
+        leaderboardName.setAdapter(userAdapter);
+        leaderboardScore.setAdapter(userAdapter2);
         //adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, arrayList);
 
 
 
 
-        databaseUsers.addChildEventListener(new ChildEventListener() {
+        databaseQuery.addChildEventListener(new ChildEventListener() {
             @Override
             public void onChildAdded(DataSnapshot dataSnapshot, String s) {
 
                 String value = dataSnapshot.child("firstName").getValue(String.class);
                 Integer points = dataSnapshot.child("points").getValue(Integer.class);
                 arrayList.add(value);
-                //arrayList2.add(points);
+                arrayList2.add(points);
 
                 userAdapter.notifyDataSetChanged();
+                userAdapter2.notifyDataSetChanged();
 
             }
 

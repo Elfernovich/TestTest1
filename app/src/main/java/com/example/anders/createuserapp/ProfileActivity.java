@@ -17,21 +17,46 @@ import android.widget.TextView;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.ChildEventListener;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
+import com.google.firebase.database.ValueEventListener;
+
+import java.lang.reflect.Array;
+import java.util.ArrayList;
 
 public class ProfileActivity extends AppCompatActivity{
     private static final String TAG = "ProfileActivity";
 
     private FirebaseAuth mAuth;
     private FirebaseAuth.AuthStateListener mAuthListener;
+    private FirebaseDatabase myFirebaseDatabase;
+    private DatabaseReference databaseUsers;
     TextView email;
     ProgressBar prgBar;
+    private String userID;
+    int currentpoints;
+    int points = 0;
     BottomNavigationView bottomNavigationView;
+    Query databaseQuery;
+    private ArrayList<Integer> pointArray = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile);
         mAuth = FirebaseAuth.getInstance();
+
+
+        myFirebaseDatabase = FirebaseDatabase.getInstance();
+        databaseQuery = myFirebaseDatabase.getReference().child("users");
+        final FirebaseUser usersID = mAuth.getCurrentUser();
+        userID = usersID.getUid();
+
+
 
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -41,9 +66,25 @@ public class ProfileActivity extends AppCompatActivity{
         prgBar = (ProgressBar) findViewById(R.id.progressBar);
 
 
-        loadUserInformation();
-        setProgressBar();
 
+
+        loadUserInformation();
+
+        databaseQuery.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                int points = dataSnapshot.child(userID).child("points").getValue(int.class);
+                currentpoints = currentpoints+points;
+                pointArray.add(points);
+                Log.d(TAG,"Value"+currentpoints);
+                setProgressBar();
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
 
         mAuthListener = new FirebaseAuth.AuthStateListener() {
             @Override
@@ -97,6 +138,7 @@ public class ProfileActivity extends AppCompatActivity{
 
 
 
+
     //If the user is not logged in he will be directed to the MainActivity.class
     @Override
     protected void onStart() {
@@ -105,8 +147,11 @@ public class ProfileActivity extends AppCompatActivity{
         if(mAuth.getCurrentUser() == null){
             finish();
             startActivity(new Intent(this, MainActivity.class));
+
         }
     }
+
+
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -144,8 +189,11 @@ public class ProfileActivity extends AppCompatActivity{
         email.setText("Du er logget ind som:\n" + displayEmail);
     }
 
+
+
     public void setProgressBar(){
-        prgBar.setProgress(80);
+        //currentpoints = pointArray.get(0);
+        prgBar.setProgress(currentpoints);
     }
 
     public void ButtonCollectActivity (View view) {

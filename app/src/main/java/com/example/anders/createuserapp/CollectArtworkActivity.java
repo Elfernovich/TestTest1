@@ -55,7 +55,7 @@ public class CollectArtworkActivity extends AppCompatActivity implements View.On
     String artwork_id;
     int image_notification;
     int currentpoints;
-    int adding_points_from_artwork = 10;
+    int adding_points_from_artwork = 20;
     boolean checked;
     //Notification
     private PopupWindow popupWindow;

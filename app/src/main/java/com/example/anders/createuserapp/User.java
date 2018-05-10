@@ -11,6 +11,7 @@ public class User {
     String lastName;
     String memberNumber;
     int points;
+    int points_handler = 10000;
 
 
     public User() {
@@ -30,7 +31,7 @@ public class User {
         this.memberNumber = memberNumber;
     }
 
-    public User(String email, String firstName, String lastName, String memberNumber, int points, boolean artwork1, boolean artwork2,
+    public User(String email, String firstName, String lastName, String memberNumber, int points, int point_handler, boolean artwork1, boolean artwork2,
                 boolean artwork3, boolean artwork4, boolean artwork5) {
 
         this.email = email;
@@ -38,6 +39,7 @@ public class User {
         this.lastName = lastName;
         this.memberNumber = memberNumber;
         this.points = points;
+        this.points_handler = points_handler;
         this.artwork1 = artwork1;
         this.artwork2 = artwork2;
         this.artwork3 = artwork3;
@@ -45,6 +47,10 @@ public class User {
         this.artwork5 = artwork5;
 
     }
+
+    public int getPoints_handler() { return points_handler; }
+
+    public void setPoints_handler(int points_handler) { this.points_handler = points_handler; }
 
     public Boolean getArtwork1() {
         return artwork1;

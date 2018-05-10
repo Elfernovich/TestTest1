@@ -45,6 +45,8 @@ public class CollectArtworkActivity extends AppCompatActivity implements View.On
     private FirebaseAuth.AuthStateListener mAuthListener;
     private String userID;
     private int pointsint;
+    private int minus_pointsint;
+
     private boolean checked_artwork;
 
     private TextView textViewTitle, textViewArtist;
@@ -55,6 +57,7 @@ public class CollectArtworkActivity extends AppCompatActivity implements View.On
     String artwork_id;
     int image_notification;
     int currentpoints;
+    int minus_currentpoints;
     int adding_points_from_artwork = 20;
     boolean checked;
     //Notification
@@ -103,6 +106,7 @@ public class CollectArtworkActivity extends AppCompatActivity implements View.On
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 calculatedPoints(dataSnapshot);
+                calculate_minus_points(dataSnapshot);
             }
 
             @Override
@@ -187,8 +191,19 @@ public class CollectArtworkActivity extends AppCompatActivity implements View.On
         currentpoints = pointsint+adding_points_from_artwork;
     }
 
+    public void calculate_minus_points(DataSnapshot dataSnapshot){
+
+        String minus_points = (String) dataSnapshot.child("users").child(userID).child("points_handler").getValue().toString();
+        minus_pointsint = Integer.parseInt(minus_points);
+        minus_currentpoints = minus_pointsint-adding_points_from_artwork;
+    }
+
     private void addPoints() {
         databaseUsers.child("users").child(userID).child("points").setValue(currentpoints);
+    }
+
+    private void point_handler(){
+        databaseUsers.child("users").child(userID).child("points_handler").setValue(minus_currentpoints);
     }
 
     private void changeArtworkvalue() {
@@ -202,6 +217,7 @@ public class CollectArtworkActivity extends AppCompatActivity implements View.On
         if ((passcode1.equals(artwork)) && (database_value == true)) {
             addPoints();
             changeArtworkvalue();
+            point_handler();
             //do something
             layoutInflater = (LayoutInflater) getApplicationContext().getSystemService(LAYOUT_INFLATER_SERVICE);
             ViewGroup container = (ViewGroup) layoutInflater.inflate(R.layout.notification_layout,null);

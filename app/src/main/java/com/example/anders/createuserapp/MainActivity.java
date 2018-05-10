@@ -127,10 +127,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         }
 
     }
-    public void btn_user (View view){
-        Intent i = new Intent (this, UserDataActivity.class);
-        startActivity(i);
-    }
 
 
 }

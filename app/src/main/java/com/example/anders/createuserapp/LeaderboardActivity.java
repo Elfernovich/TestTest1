@@ -134,8 +134,9 @@ public class LeaderboardActivity extends AppCompatActivity {
                 switch (item.getItemId()) {
                     case R.id.id_profile:
                         Intent intent1 = new Intent(LeaderboardActivity.this, ProfileActivity.class);
-                        intent1.addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
+                        intent1.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                         startActivity(intent1);
+                        finish();
                         //activity.startActivity(new Intent(activity, ProfileActivity.class));
                         break;
 
@@ -143,12 +144,13 @@ public class LeaderboardActivity extends AppCompatActivity {
                         Intent intent2 = new Intent(LeaderboardActivity.this, CollectOverviewActivity.class);
                         intent2.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                         startActivity(intent2);
+                        finish();
                         //activity.startActivity(new Intent(activity, ProfileActivity.class));
                         break;
 
                     case R.id.id_reward:
                         Intent intent3 = new Intent(LeaderboardActivity.this, LeaderboardActivity.class);
-                        intent3.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                        intent3.addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
                         startActivity(intent3);
                         //mIntent.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
                         break;
@@ -209,6 +211,13 @@ public class LeaderboardActivity extends AppCompatActivity {
         }
     }
 
+    //Start ProfileActivity when back button is pressed
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        startActivity(new Intent (this, ProfileActivity.class));
+    }
+
     //Inflate the top toolbar with a menu
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -228,14 +237,7 @@ public class LeaderboardActivity extends AppCompatActivity {
                 FirebaseAuth.getInstance().signOut();
                 finish();
                 startActivity(new Intent (this, MainActivity.class));
-
-                break;
-            case R.id.menuEditUserData:
-
-                finish();
-                startActivity(new Intent (this, EditUserDataActivity.class));
         }
-
         return true;
     }
 }

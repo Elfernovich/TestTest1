@@ -153,12 +153,6 @@ public class EditUserDataActivity extends AppCompatActivity {
                 FirebaseAuth.getInstance().signOut();
                 finish();
                 startActivity(new Intent (this, MainActivity.class));
-
-                break;
-            case R.id.menuEditUserData:
-
-                finish();
-                startActivity(new Intent (this, EditUserDataActivity.class));
         }
 
         return true;

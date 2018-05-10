@@ -40,7 +40,7 @@ public class ProfileActivity extends AppCompatActivity{
     TextView email, progres;
     ProgressBar prgBar;
     private String userID;
-    int currentpoints;
+    private int currentpoints;
     int points = 0;
     BottomNavigationView bottomNavigationView;
     Query databaseQuery;
@@ -71,7 +71,7 @@ public class ProfileActivity extends AppCompatActivity{
         loadUserInformation();
 
 
-        databaseQuery.addValueEventListener(new ValueEventListener() {
+        databaseQuery.addValueEventListener (new ValueEventListener () {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 int points = dataSnapshot.child(userID).child("points").getValue(int.class);
@@ -101,6 +101,7 @@ public class ProfileActivity extends AppCompatActivity{
             }
         };
 
+
             //BottomNavigation Bar
             bottomNavigationView = (BottomNavigationView) findViewById(R.id.bottomNavView_Bar);
             Menu menu = bottomNavigationView.getMenu();
@@ -113,7 +114,6 @@ public class ProfileActivity extends AppCompatActivity{
                     switch (item.getItemId()){
                         case R.id.id_profile:
                             Intent intent1 = new Intent(ProfileActivity.this, ProfileActivity.class);
-
                             intent1.addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
                             startActivity(intent1);
                             //activity.startActivity(new Intent(activity, ProfileActivity.class));
@@ -121,17 +121,17 @@ public class ProfileActivity extends AppCompatActivity{
 
                         case R.id.id_collect:
                             Intent intent2 = new Intent(ProfileActivity.this, CollectOverviewActivity.class);
-
                             intent2.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                             startActivity(intent2);
+                            finish();
                             //activity.startActivity(new Intent(activity, ProfileActivity.class));
                             break;
 
                         case R.id.id_reward:
                             Intent intent3 = new Intent (ProfileActivity.this, LeaderboardActivity.class);
-
                             intent3.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                             startActivity(intent3);
+                            finish();
                             //mIntent.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
                             break;
                     }
@@ -158,37 +158,13 @@ public class ProfileActivity extends AppCompatActivity{
         }
     }
 
-
-
     @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-
-        MenuInflater inflater = getMenuInflater();
-        inflater.inflate(R.menu.menu, menu);
-
-        return true;
+    protected void onPause() {
+        super.onPause();
+        //databaseQuery.removeEventListener((ValueEventListener) this);
     }
 
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-
-        switch (item.getItemId()){
-            case R.id.menuLogout:
-
-                FirebaseAuth.getInstance().signOut();
-                finish();
-                startActivity(new Intent (this, MainActivity.class));
-
-                break;
-            case R.id.menuEditUserData:
-
-                finish();
-                startActivity(new Intent (this, EditUserDataActivity.class));
-        }
-
-        return true;
-    }
-
+    //Load the users e-mail from Firebase Auth
     private void loadUserInformation(){
         FirebaseUser user = mAuth.getCurrentUser();
 
@@ -211,5 +187,30 @@ public class ProfileActivity extends AppCompatActivity{
         Intent i = new Intent (this, LeaderboardActivity.class);
             startActivity(i);
         }
+
+
+    //Inflate the top toolbar with a menu
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.menu, menu);
+
+        return true;
+    }
+
+    //Functions to the menus in the top toolbar
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+
+        switch (item.getItemId()){
+            case R.id.menuLogout:
+
+                FirebaseAuth.getInstance().signOut();
+                finish();
+                startActivity(new Intent (this, MainActivity.class));
+        }
+        return true;
+    }
     }
 

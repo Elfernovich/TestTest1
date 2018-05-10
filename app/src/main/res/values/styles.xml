@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
+    <style name="AppTheme.NoActionBar">
+        <item name="coordinatorLayoutStyle">@style/Widget.Design.CoordinatorLayout</item>
+    </style>
+
     <!-- Base application theme. -->
     <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
         <!-- Customize your theme here. -->
@@ -20,7 +24,13 @@
     <!-- Basic style for text -->
     <style name="MyText" parent="@android:style/TextAppearance">
         <item name="android:textColor">#FF0854AA</item>
-        <item name="android:textSize">18dp</item>
+        <item name="android:textSize">18sp</item>
+    </style>
+
+    <!-- Basic style for headers-->
+    <style name="MyTextHeader" parent="@android:style/TextAppearance">
+        <item name="android:textColor">#FF0854AA</item>
+        <item name="android:textSize">22sp</item>
     </style>
 
     <style name="TextBasic" parent="@android:style/TextAppearance">

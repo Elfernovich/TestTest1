@@ -76,7 +76,7 @@ public class CollectOverviewActivity extends AppCompatActivity {
 
             listArtwork.add(new Artwork("Forår", "Hans Andersen Brendekilde","artwork1", R.drawable.forar_sager));
             listArtwork.add(new Artwork("Hverdagsikoner", "Richard Mortensen","artwork2", R.drawable.hverdags_ikoner));
-            listArtwork.add(new Artwork("Wolf Vostell", "Læbestift-bombemaskine","artwork3", R.drawable.labestift_bombemaskine));
+            listArtwork.add(new Artwork("Læbestift-bombemaskine", "Wolf Vostell","artwork3", R.drawable.labestift_bombemaskine));
             listArtwork.add(new Artwork("Ørnens ret", "Asger Jorn","artwork4", R.drawable.ornens_ret));
             listArtwork.add(new Artwork("Sex-paralysappeal", "Wilhelm Freddie","artwork5", R.drawable.sex_paralysappeal));
 
@@ -103,14 +103,15 @@ public class CollectOverviewActivity extends AppCompatActivity {
                 switch (item.getItemId()){
                     case R.id.id_profile:
                         Intent intent1 = new Intent(CollectOverviewActivity.this, ProfileActivity.class);
-                        intent1.addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
+                        intent1.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                         startActivity(intent1);
+                        finish();
                         //activity.startActivity(new Intent(activity, ProfileActivity.class));
                         break;
 
                     case R.id.id_collect:
                         Intent intent2 = new Intent(CollectOverviewActivity.this, CollectOverviewActivity.class);
-                        intent2.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                        intent2.addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
                         startActivity(intent2);
                         //activity.startActivity(new Intent(activity, ProfileActivity.class));
                         break;
@@ -118,6 +119,7 @@ public class CollectOverviewActivity extends AppCompatActivity {
                     case R.id.id_reward:
                         Intent intent3 = new Intent (CollectOverviewActivity.this, LeaderboardActivity.class);
                         intent3.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                        finish();
                         startActivity(intent3);
                         //mIntent.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
                         break;
@@ -142,6 +144,13 @@ public class CollectOverviewActivity extends AppCompatActivity {
         }
     }
 
+    //Start ProfileActivity when back button is pressed
+        @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        startActivity(new Intent (this, ProfileActivity.class));
+    }
+
     //Inflate the top toolbar with a menu
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -152,6 +161,7 @@ public class CollectOverviewActivity extends AppCompatActivity {
         return true;
     }
 
+    //Functions to the menus in the top toolbar
         @Override
     public boolean onOptionsItemSelected(MenuItem item) {
 
@@ -161,14 +171,7 @@ public class CollectOverviewActivity extends AppCompatActivity {
                 FirebaseAuth.getInstance().signOut();
                 finish();
                 startActivity(new Intent (this, MainActivity.class));
-
-                break;
-            case R.id.menuEditUserData:
-
-                finish();
-                startActivity(new Intent (this, EditUserDataActivity.class));
         }
-
         return true;
     }
 }

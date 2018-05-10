@@ -2,7 +2,10 @@ package com.example.anders.createuserapp;
 
 import android.content.Intent;
 import android.media.Image;
+import android.media.MediaPlayer;
+import android.net.Uri;
 import android.os.Build;
+import android.os.Environment;
 import android.provider.ContactsContract;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
@@ -59,10 +62,23 @@ public class CollectArtworkActivity extends AppCompatActivity implements View.On
     int minus_currentpoints;
     int adding_points_from_artwork = 20;
     boolean checked;
+
     //Notification
     private PopupWindow popupWindow;
     private LayoutInflater layoutInflater;
     private LinearLayout linearLayout;
+
+    //Media player
+    MediaPlayer mediaPlayer;
+    ImageButton play;
+    int[] songs;
+    int index = 0;
+    final String artwork1 = "artwork1";
+    final String artwork2 = "artwork2";
+    final String artwork3 = "artwork3";
+    final String artwork4 = "artwork4";
+    final String artwork5 = "artwork5";
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -82,6 +98,8 @@ public class CollectArtworkActivity extends AppCompatActivity implements View.On
         inputAnswer = (EditText) findViewById(R.id.editTextArtworkCode);
         submitBtn = (Button) findViewById(R.id.btn_enter_art_code);
         linearLayout = (LinearLayout) findViewById(R.id.collect_artwork_linearlayout);
+
+
 
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -139,7 +157,29 @@ public class CollectArtworkActivity extends AppCompatActivity implements View.On
         artwork_name = Title;
         artwork_id = ID;
 
+        //Media player
+        songs = new int[]{R.raw.artwork1, R.raw.artwork2, R.raw.artwork3};
+        play = (ImageButton) findViewById(R.id.btn_sound);
+        mediaPlayer = MediaPlayer.create(this, songs[index]);
 
+
+
+        //Media player button click
+        play.setOnClickListener(new View.OnClickListener() {
+            @Override
+
+            public void onClick(View v) {
+                if(mediaPlayer.isPlaying()) {
+                    mediaPlayer.pause();
+
+                }else {
+                    mediaSelector();
+                    mediaPlayer.start();
+                }
+            }
+            });
+
+        //Save artwork button
         submitBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -245,7 +285,7 @@ public class CollectArtworkActivity extends AppCompatActivity implements View.On
 
 
         } else if (!passcode1.equals(artwork)) {
-            Toast.makeText(getApplicationContext(), "Forkert kode", Toast.LENGTH_LONG).show();
+            Toast.makeText(getApplicationContext(), "Forkert kode. Prøv igen", Toast.LENGTH_LONG).show();
 
         }
     }
@@ -255,6 +295,40 @@ public class CollectArtworkActivity extends AppCompatActivity implements View.On
 
     }
 
+
+
+    //Select what media files to play based on artwork chosen
+    private void mediaSelector(){
+
+        if (artwork_id.equals(artwork1)){
+            Toast.makeText(getApplicationContext(), "Afspiller Forår lydklip", Toast.LENGTH_SHORT).show();
+            mediaPlayer = MediaPlayer.create(this, songs[0]);
+
+        }else if (artwork_id.equals(artwork2)) {
+            Toast.makeText(getApplicationContext(), "Afspiller Hverdagsikoner lydklip", Toast.LENGTH_SHORT).show();
+            mediaPlayer = MediaPlayer.create(this, songs[1]);
+
+        }else if (artwork_id.equals(artwork3)) {
+            Toast.makeText(getApplicationContext(), "Afspiller Læbestift-bombemaskine lydklip ", Toast.LENGTH_SHORT).show();
+            mediaPlayer = MediaPlayer.create(this, songs[2]);
+
+        }else if (artwork_id.equals(artwork4)) {
+            Toast.makeText(getApplicationContext(), "Der er desværre ikke noget lydklip til dette værk", Toast.LENGTH_SHORT).show();
+            mediaPlayer.stop();
+
+        }else if (artwork_id.equals(artwork5)) {
+            Toast.makeText(getApplicationContext(), "Der er desværre ikke noget lydklip til dette værk", Toast.LENGTH_SHORT).show();
+            mediaPlayer.stop();
+        }
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        mediaPlayer.stop();
+    }
+
+    //Inflate the top toolbar with a menu
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
 
@@ -264,6 +338,7 @@ public class CollectArtworkActivity extends AppCompatActivity implements View.On
         return true;
     }
 
+    //Functions to the menus in the top toolbar
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
 
@@ -273,14 +348,7 @@ public class CollectArtworkActivity extends AppCompatActivity implements View.On
                 FirebaseAuth.getInstance().signOut();
                 finish();
                 startActivity(new Intent (this, MainActivity.class));
-
-                break;
-            case R.id.menuEditUserData:
-
-                finish();
-                startActivity(new Intent (this, EditUserDataActivity.class));
         }
-
         return true;
     }
 }

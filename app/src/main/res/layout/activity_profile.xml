@@ -44,7 +44,7 @@
                 android:layout_marginTop="8dp"
                 android:gravity="center"
                 android:text="TextView"
-                android:textSize="22dp" />
+                style="@style/MyTextHeader" />
 
 
             <ProgressBar
@@ -66,7 +66,7 @@
                 android:layout_height="125dp"
                 android:layout_alignParentStart="true"
                 android:layout_alignParentTop="true"
-                android:layout_marginStart="26dp"
+                android:layout_marginStart="10dp"
                 android:layout_marginTop="80dp"
                 app:srcCompat="@drawable/kunsten_facade" />
 
@@ -74,8 +74,8 @@
                 android:id="@+id/fake_exhibition"
                 android:layout_width="150dp"
                 android:layout_height="125dp"
+                android:layout_marginStart="10dp"
                 android:layout_alignParentBottom="true"
-                android:layout_alignStart="@+id/imageView_kunstenudstilling"
                 android:layout_marginBottom="81dp"
                 app:srcCompat="@drawable/kurt_trampedach" />
 
@@ -90,12 +90,11 @@
             <TextView
                 android:id="@+id/textView_exhibition_description"
                 android:layout_width="wrap_content"
-                android:layout_height="20dp"
+                android:layout_height="wrap_content"
                 android:layout_alignParentTop="true"
                 android:layout_alignStart="@+id/progressBar"
                 android:layout_marginTop="105dp"
-                android:text="Kunsten udstilling"
-                tools:text="Kunsten udstilling" />
+                android:text="Permanent udstilling" />
 
             <TextView
                 android:id="@+id/textView_fake_description"
@@ -103,7 +102,7 @@
                 android:layout_height="wrap_content"
                 android:layout_above="@+id/imageView"
                 android:layout_alignStart="@+id/progressBar"
-                android:text="Kurt Tramperdach - 12/09" />
+                android:text="Kurt Trampedach - 12/09" />
 
             <TextView
                 android:id="@+id/textView_fake_progress"
@@ -112,16 +111,15 @@
                 android:layout_alignStart="@+id/progressBar"
                 android:layout_below="@+id/imageView"
                 android:layout_marginTop="-127dp"
-                android:text="0/100" />
+                android:text="0/100 Point" />
 
             <ImageView
                 android:id="@+id/imageview_locked"
-                android:layout_width="151dp"
-                android:layout_height="122dp"
-                android:layout_alignParentStart="true"
+                android:layout_width="150dp"
+                android:layout_height="125dp"
+                android:layout_alignStart="@+id/fake_exhibition"
+
                 android:layout_alignTop="@+id/fake_exhibition"
-                android:layout_marginStart="25dp"
-                android:layout_marginTop="1dp"
                 android:alpha="0.75"
                 app:srcCompat="@drawable/locked" />
 

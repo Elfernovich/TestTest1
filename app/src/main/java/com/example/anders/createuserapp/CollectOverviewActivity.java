@@ -86,6 +86,7 @@ public class CollectOverviewActivity extends AppCompatActivity {
             myRecyclerView.setAdapter(myAdapter);
 
 
+
         //Toolbar at the top
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);

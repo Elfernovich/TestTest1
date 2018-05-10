@@ -7,7 +7,7 @@
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
-        android:label="@string/app_name"
+        android:label="Kunsten App"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
@@ -18,16 +18,18 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".MainActivity"></activity>
         <activity android:name=".SignUpActivity" />
-        <activity android:name=".ProfileActivity" />
         <activity android:name=".UserDataActivity" />
         <activity android:name=".EditUserDataActivity" />
-        <activity android:name=".CollectActivity" />
-        <activity android:name=".CollectOverviewActivity" />
+
+        <activity android:name=".ProfileActivity" />
+        <activity android:name=".CollectActivity"
+            android:parentActivityName=".CollectOverviewActivity"/>
+        <activity android:name=".CollectOverviewActivity"
+            android:parentActivityName=".ProfileActivity"/>
         <activity android:name=".CollectArtworkActivity" />
-        <activity android:name=".CollectArtworkActivityFinished" />
         <activity android:name=".LeaderboardActivity" />
-        <activity android:name=".MainActivity"></activity>
     </application>
 
 </manifest>

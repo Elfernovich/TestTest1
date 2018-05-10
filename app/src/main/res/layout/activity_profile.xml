@@ -7,21 +7,21 @@
     tools:context=".ProfileActivity">
 
     <RelativeLayout
+        android:id="@+id/relLayout"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:id="@+id/relLayout">
+        android:layout_height="match_parent">
 
         <RelativeLayout
+            android:id="@+id/relLayouttopBar"
             android:layout_width="match_parent"
             android:layout_height="50dp"
-            android:id="@+id/relLayouttopBar"
             android:layout_alignParentTop="true">
 
             <android.support.v7.widget.Toolbar
                 android:id="@+id/toolbar"
-                android:background="@color/colorPrimary"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:background="@color/colorPrimary">
 
             </android.support.v7.widget.Toolbar>
 
@@ -29,11 +29,11 @@
 
 
         <RelativeLayout
+            android:id="@+id/relLayoutMiddle"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:id="@+id/relLayoutMiddle"
-            android:layout_below="@id/relLayouttopBar"
-            android:layout_above="@id/relLayoutbottomBar">
+            android:layout_above="@id/relLayoutbottomBar"
+            android:layout_below="@id/relLayouttopBar">
 
 
             <TextView
@@ -43,8 +43,8 @@
                 android:layout_marginEnd="8dp"
                 android:layout_marginTop="8dp"
                 android:gravity="center"
-                android:textSize="22dp"
-                android:text="TextView" />
+                android:text="TextView"
+                android:textSize="22dp" />
 
 
             <ProgressBar
@@ -85,15 +85,15 @@
                 android:layout_height="wrap_content"
                 android:layout_alignParentTop="true"
                 android:layout_alignStart="@+id/progressBar"
-                android:layout_marginTop="158dp"
-                android:text="40/100" />
+                android:layout_marginTop="158dp" />
 
             <TextView
                 android:id="@+id/textView_exhibition_description"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignStart="@+id/imageView_kunstenudstilling"
-                android:layout_below="@+id/imageView_kunstenudstilling"
+                android:layout_height="20dp"
+                android:layout_alignParentTop="true"
+                android:layout_alignStart="@+id/progressBar"
+                android:layout_marginTop="105dp"
                 android:text="Kunsten udstilling"
                 tools:text="Kunsten udstilling" />
 
@@ -101,28 +101,17 @@
                 android:id="@+id/textView_fake_description"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignStart="@+id/imageView_kunstenudstilling"
-                android:layout_below="@+id/fake_exhibition"
-                android:layout_marginTop="-81dp"
-                android:text="Kurt Tramperdach - 12/09" />
-
-            <ProgressBar
-                android:id="@+id/progressBar2"
-                style="?android:attr/progressBarStyleHorizontal"
-                android:layout_width="155dp"
-                android:layout_height="15dp"
-                android:layout_alignParentBottom="true"
+                android:layout_above="@+id/imageView"
                 android:layout_alignStart="@+id/progressBar"
-                android:layout_marginBottom="130dp"
-                android:progressDrawable="@drawable/myprogressbar" />
+                android:text="Kurt Tramperdach - 12/09" />
 
             <TextView
                 android:id="@+id/textView_fake_progress"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignParentBottom="true"
                 android:layout_alignStart="@+id/progressBar"
-                android:layout_marginBottom="102dp"
+                android:layout_below="@+id/imageView"
+                android:layout_marginTop="-127dp"
                 android:text="0/100" />
 
             <ImageView
@@ -136,9 +125,16 @@
                 android:alpha="0.75"
                 app:srcCompat="@drawable/locked" />
 
+            <ImageView
+                android:id="@+id/imageView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_alignStart="@+id/progressBar"
+                android:layout_marginBottom="127dp"
+                app:srcCompat="@drawable/poggersbar" />
+
         </RelativeLayout>
-
-
 
 
         <RelativeLayout

@@ -50,12 +50,11 @@ public class CollectArtworkActivity extends AppCompatActivity implements View.On
     private boolean checked_artwork;
 
     private TextView textViewTitle, textViewArtist;
-    private ImageView img, img_reward;
+    private ImageView img;
     private EditText inputAnswer;
     Button submitBtn;
     String artwork_name;
     String artwork_id;
-    int image_notification;
     int currentpoints;
     int minus_currentpoints;
     int adding_points_from_artwork = 20;
@@ -83,7 +82,6 @@ public class CollectArtworkActivity extends AppCompatActivity implements View.On
         inputAnswer = (EditText) findViewById(R.id.editTextArtworkCode);
         submitBtn = (Button) findViewById(R.id.btn_enter_art_code);
         linearLayout = (LinearLayout) findViewById(R.id.collect_artwork_linearlayout);
-        img_reward = (ImageView) findViewById(R.id.img_completed_artwork);
 
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -140,7 +138,6 @@ public class CollectArtworkActivity extends AppCompatActivity implements View.On
         img.setImageResource(image);
         artwork_name = Title;
         artwork_id = ID;
-        image_notification = image;
 
 
         submitBtn.setOnClickListener(new View.OnClickListener() {
@@ -231,7 +228,9 @@ public class CollectArtworkActivity extends AppCompatActivity implements View.On
                 @Override
                 public void onClick(View view){
                     popupWindow.dismiss();
+                    finish();
                     Intent intent = new Intent(view.getContext(), CollectOverviewActivity.class);
+                    intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                     startActivity(intent);
                 }
             });
@@ -246,7 +245,7 @@ public class CollectArtworkActivity extends AppCompatActivity implements View.On
 
 
         } else if (!passcode1.equals(artwork)) {
-            Toast.makeText(getApplicationContext(), "Not so nice", Toast.LENGTH_LONG).show();
+            Toast.makeText(getApplicationContext(), "Forkert kode", Toast.LENGTH_LONG).show();
 
         }
     }

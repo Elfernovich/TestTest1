@@ -1,6 +1,8 @@
 package com.example.anders.createuserapp;
 
 import android.app.Activity;
+import android.app.PendingIntent;
+import android.app.TaskStackBuilder;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -35,7 +37,7 @@ public class ProfileActivity extends AppCompatActivity{
     private FirebaseAuth.AuthStateListener mAuthListener;
     private FirebaseDatabase myFirebaseDatabase;
     private DatabaseReference databaseUsers;
-    TextView email;
+    TextView email, progres;
     ProgressBar prgBar;
     private String userID;
     int currentpoints;
@@ -62,13 +64,12 @@ public class ProfileActivity extends AppCompatActivity{
         setSupportActionBar(toolbar);
 
         email = (TextView) findViewById(R.id.textViewEmail);
+        progres = (TextView) findViewById(R.id.textview_progress);
 
         prgBar = (ProgressBar) findViewById(R.id.progressBar);
 
-
-
-
         loadUserInformation();
+
 
         databaseQuery.addValueEventListener(new ValueEventListener() {
             @Override
@@ -78,6 +79,7 @@ public class ProfileActivity extends AppCompatActivity{
                 pointArray.add(points);
                 Log.d(TAG,"Value"+currentpoints);
                 setProgressBar();
+                points_for_progress();
             }
 
             @Override
@@ -85,6 +87,8 @@ public class ProfileActivity extends AppCompatActivity{
 
             }
         });
+
+
 
         mAuthListener = new FirebaseAuth.AuthStateListener() {
             @Override
@@ -109,6 +113,7 @@ public class ProfileActivity extends AppCompatActivity{
                     switch (item.getItemId()){
                         case R.id.id_profile:
                             Intent intent1 = new Intent(ProfileActivity.this, ProfileActivity.class);
+
                             intent1.addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
                             startActivity(intent1);
                             //activity.startActivity(new Intent(activity, ProfileActivity.class));
@@ -116,6 +121,7 @@ public class ProfileActivity extends AppCompatActivity{
 
                         case R.id.id_collect:
                             Intent intent2 = new Intent(ProfileActivity.this, CollectOverviewActivity.class);
+
                             intent2.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                             startActivity(intent2);
                             //activity.startActivity(new Intent(activity, ProfileActivity.class));
@@ -123,6 +129,7 @@ public class ProfileActivity extends AppCompatActivity{
 
                         case R.id.id_reward:
                             Intent intent3 = new Intent (ProfileActivity.this, LeaderboardActivity.class);
+
                             intent3.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                             startActivity(intent3);
                             //mIntent.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
@@ -189,7 +196,10 @@ public class ProfileActivity extends AppCompatActivity{
         email.setText("Velkommenn " + displayEmail+"!");
     }
 
-
+    public void points_for_progress(){
+        String helper = Integer.toString(currentpoints);
+        progres.setText(helper+"/100 Point");
+    }
 
     public void setProgressBar(){
         //currentpoints = pointArray.get(0);

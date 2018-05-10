@@ -43,7 +43,6 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
         return new MyViewHolder(view);
     }
 
-
     public void onBindViewHolder(@NonNull MyViewHolder holder, final int position) {
 
         holder.textView_Artwork_Title.setText(mData.get(position).getTitle());
@@ -64,9 +63,13 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
 
                 mContext.startActivity(intent);
 
+
         }
         });
+
     }
+
+
 
     @Override
     public int getItemCount() {

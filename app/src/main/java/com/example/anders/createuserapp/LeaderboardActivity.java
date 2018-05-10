@@ -61,7 +61,7 @@ public class LeaderboardActivity extends AppCompatActivity {
         FirebaseUser usersID = mAuth.getCurrentUser();
         userID = usersID.getUid();
 
-        databaseQuery = FirebaseDatabase.getInstance().getReference().child("users").orderByChild("points").limitToLast(5);
+        databaseQuery = FirebaseDatabase.getInstance().getReference().child("users").orderByChild("points_handler").limitToLast(5);
 
         final ArrayAdapter<String> userAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, arrayList);
         final ArrayAdapter<Integer> userAdapter2 = new ArrayAdapter<Integer>(this, android.R.layout.simple_list_item_1, arrayList2);
@@ -215,6 +215,26 @@ public class LeaderboardActivity extends AppCompatActivity {
 
         MenuInflater inflater = getMenuInflater();
         inflater.inflate(R.menu.menu, menu);
+
+        return true;
+    }
+
+        @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+
+        switch (item.getItemId()){
+            case R.id.menuLogout:
+
+                FirebaseAuth.getInstance().signOut();
+                finish();
+                startActivity(new Intent (this, MainActivity.class));
+
+                break;
+            case R.id.menuEditUserData:
+
+                finish();
+                startActivity(new Intent (this, EditUserDataActivity.class));
+        }
 
         return true;
     }

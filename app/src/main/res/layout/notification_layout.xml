@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@color/trans"
     android:orientation="vertical"
     android:id="@+id/linear_layout">
@@ -30,24 +31,23 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:text="Præmie: 20 point"
+        android:textAlignment="center"
         android:textColor="@color/colorBlack"
-        android:text="Præmie: 10 point"
-        android:textSize="25sp"
-        android:textAlignment="center"/>
+        android:textSize="25sp" />
 
     <ImageView
-        android:id="@+id/img_completed_artwork"
-        android:layout_width="250dp"
-        android:layout_height="250dp"
-        android:layout_gravity="center"
-        android:layout_marginTop="10dp" />
+        android:id="@+id/image_completed_artwork"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:srcCompat="@drawable/check" />
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textColor="@color/colorBlack"
         android:text="Tryk for at finde en ny opgave"
-        android:textSize="25sp"
-        android:textAlignment="center"/>
+        android:textAlignment="center"
+        android:textColor="@color/colorBlack"
+        android:textSize="25sp" />
 
 </LinearLayout>

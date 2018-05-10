@@ -1,11 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
 
     <!-- Base application theme. -->
     <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
         <!-- Customize your theme here. -->
+        <!-- color for background -->
         <item name="colorPrimary">@color/colorPrimary</item>
+        <!-- color for app bar and button color etc -->
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <!-- color for text etc. -->
         <item name="colorAccent">@color/colorAccent</item>
+        <!-- color for text in buttons etc.  -->
+        <item name="android:colorButtonNormal">@color/colorAccent</item>
+        <item name="android:textColor">#FF0854AA</item>
+        <item name="android:textColorSecondary">@color/colorSecondary</item>
     </style>
+
+
+    <!-- Basic style for text -->
+    <style name="MyText" parent="@android:style/TextAppearance">
+        <item name="android:textColor">#FF0854AA</item>
+        <item name="android:textSize">18dp</item>
+    </style>
+
+    <style name="TextBasic" parent="@android:style/TextAppearance">
+        <item name="android:textColor">@color/colorAccent</item>
+    </style>
+
+
+    <!-- style brugt for buttons, bla. i activity main og sign up bla.  -->
+    <style name="MyButton" parent="Theme.AppCompat.Light">
+        <item name="colorControlHighlight">@color/colorPrimaryDark</item>
+        <item name="colorButtonNormal">@color/colorPrimaryDark</item>
+        <item name="android:layout_margin">7dp</item>
+        <item name="android:gravity">center</item>
+        <!-- for text in buttons etc.  -->
+        <item name="android:textSize">20dp</item>
+        <item name="android:textColor">@color/colorLightBlue</item>
+        <item name="android:textAllCaps">false</item>
+    </style>
+
+
+    <!-- for button in Welcome screen / bigger buttons  -->
+    <style name="Button2" parent="Theme.AppCompat.Light">
+        <item name="android:layout_margin">7dp</item>
+        <item name="android:background">@color/colorPrimaryDark</item>
+        <item name="android:gravity">center</item>
+        <!-- for text in buttons etc.  -->
+        <item name="android:textSize">27sp</item>
+        <item name="android:textColor">@android:color/white</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textAllCaps">false</item>
+    </style>
+
+
 
 </resources>

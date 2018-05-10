@@ -218,4 +218,24 @@ public class LeaderboardActivity extends AppCompatActivity {
 
         return true;
     }
+
+        @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+
+        switch (item.getItemId()){
+            case R.id.menuLogout:
+
+                FirebaseAuth.getInstance().signOut();
+                finish();
+                startActivity(new Intent (this, MainActivity.class));
+
+                break;
+            case R.id.menuEditUserData:
+
+                finish();
+                startActivity(new Intent (this, EditUserDataActivity.class));
+        }
+
+        return true;
+    }
 }

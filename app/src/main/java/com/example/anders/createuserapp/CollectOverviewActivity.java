@@ -74,11 +74,11 @@ public class CollectOverviewActivity extends AppCompatActivity {
         listArtwork = new ArrayList<>();
 
 
-            listArtwork.add(new Artwork("So Simple", "Michael Kvium","artwork1", R.drawable.sex_hype));
-            listArtwork.add(new Artwork("Social Dream Painting", "Michael Kvium","artwork2", R.drawable.forar_sager));
-            listArtwork.add(new Artwork("Kulturkreds", "Michael Kvium","artwork3", R.drawable.hverdags_ikoner));
-            listArtwork.add(new Artwork("Naturkreds", "Michael Kvium","artwork4", R.drawable.labestift_bombemaskine));
-            listArtwork.add(new Artwork("Naturkreds", "Michael Kvium","artwork4", R.drawable.ornens_ret));
+            listArtwork.add(new Artwork("Forår", "Hans Andersen Brendekilde","artwork1", R.drawable.forar_sager));
+            listArtwork.add(new Artwork("Hverdagsikoner", "Richard Mortensen","artwork2", R.drawable.hverdags_ikoner));
+            listArtwork.add(new Artwork("Wolf Vostell", "Læbestift-bombemaskine","artwork3", R.drawable.labestift_bombemaskine));
+            listArtwork.add(new Artwork("Ørnens ret", "Asger Jorn","artwork4", R.drawable.ornens_ret));
+            listArtwork.add(new Artwork("Sex-paralysappeal", "Wilhelm Freddie","artwork5", R.drawable.sex_paralysappeal));
 
             RecyclerView myRecyclerView = (RecyclerView) findViewById(R.id.recyclerview_id);
             RecyclerViewAdapter myAdapter = new RecyclerViewAdapter(this, listArtwork);
@@ -147,6 +147,26 @@ public class CollectOverviewActivity extends AppCompatActivity {
 
         MenuInflater inflater = getMenuInflater();
         inflater.inflate(R.menu.menu, menu);
+
+        return true;
+    }
+
+        @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+
+        switch (item.getItemId()){
+            case R.id.menuLogout:
+
+                FirebaseAuth.getInstance().signOut();
+                finish();
+                startActivity(new Intent (this, MainActivity.class));
+
+                break;
+            case R.id.menuEditUserData:
+
+                finish();
+                startActivity(new Intent (this, EditUserDataActivity.class));
+        }
 
         return true;
     }

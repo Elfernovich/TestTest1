@@ -14,6 +14,7 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.google.firebase.auth.FirebaseAuth;
@@ -22,6 +23,7 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
@@ -31,13 +33,17 @@ public class CollectOverviewActivity extends AppCompatActivity {
     private static final String TAG = "CollectOverviewActivity";
 
     private FirebaseAuth mAuth;
+    private FirebaseAuth.AuthStateListener mAuthListener;
     private FirebaseDatabase myFirebaseDatabase;
     private DatabaseReference databaseUsers;
-    private FirebaseAuth.AuthStateListener mAuthListener;
+    TextView progres;
+    //private FirebaseAuth.AuthStateListener mAuthListener;
     private String userID;
     private boolean checked_artwork;
+    private int currentpoints;
     BottomNavigationView bottomNavigationView;
-
+    ProgressBar prgBar_overview;
+    Query databaseQuery;
     boolean checked;
 
     TextView editArtworkCode;
@@ -47,16 +53,34 @@ public class CollectOverviewActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_collect_overview);
-
-
-
-
-
         mAuth = FirebaseAuth.getInstance();
+
+        prgBar_overview = (ProgressBar) findViewById(R.id.progressBar_overview);
+
+        progres = (TextView) findViewById(R.id.textView_overviewCollect);
+
         myFirebaseDatabase = FirebaseDatabase.getInstance();
-        databaseUsers = myFirebaseDatabase.getReference();//.child("users");
-        FirebaseUser usersID = mAuth.getCurrentUser();
+        databaseQuery = myFirebaseDatabase.getReference().child("users");
+        final FirebaseUser usersID = mAuth.getCurrentUser();
         userID = usersID.getUid();
+
+        databaseQuery.addValueEventListener (new ValueEventListener () {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+            int points = dataSnapshot.child(userID).child("points").getValue(int.class);
+            currentpoints = points;
+            Log.d(TAG, "Value" + currentpoints);
+            setProgressBar();
+            points_for_progress();
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+
+
 
         mAuthListener = new FirebaseAuth.AuthStateListener() {
             @Override
@@ -142,6 +166,16 @@ public class CollectOverviewActivity extends AppCompatActivity {
             finish();
             startActivity(new Intent(this, MainActivity.class));
         }
+    }
+
+    public void points_for_progress() {
+        String helper = Integer.toString(currentpoints);
+        progres.setText(helper + "/100 Point");
+    }
+
+    public void setProgressBar(){
+        //currentpoints = pointArray.get(0);
+        prgBar_overview.setProgress(currentpoints);
     }
 
     //Start ProfileActivity when back button is pressed

@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:background="@color/trans"
+    android:background="@color/colorPrimary"
     android:orientation="vertical"
     android:id="@+id/linear_layout">
 
@@ -16,9 +16,9 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="TILLYKKE"
-        android:textSize="25sp"
+        android:textSize="35sp"
         android:textAlignment="center"
-        android:layout_marginTop="100dp"/>
+        android:layout_marginTop="50dp"/>
 
     <TextView
         android:layout_width="match_parent"
@@ -26,21 +26,25 @@
         style="@style/MyText"
         android:text="Du har indsamlet dette værk"
         android:textSize="25sp"
+        android:layout_marginTop="15dp"
         android:textAlignment="center"/>
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         style="@style/MyText"
-        android:text="Præmie: 20 point"
+        android:text="og modtaget 20 point"
         android:textAlignment="center"
+        android:layout_marginTop="15dp"
         android:textSize="25sp" />
+
 
     <ImageView
         android:id="@+id/image_completed_artwork"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:srcCompat="@drawable/check" />
+        android:layout_width="250dp"
+        android:layout_height="250dp"
+        android:layout_gravity="center"
+        android:src="@drawable/check" />
 
     <TextView
         android:layout_width="match_parent"
@@ -48,6 +52,7 @@
         style="@style/MyText"
         android:text="Tryk for at finde en ny opgave"
         android:textAlignment="center"
+        android:layout_marginTop="15dp"
         android:textSize="25sp" />
 
 </LinearLayout>

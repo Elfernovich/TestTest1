@@ -182,11 +182,12 @@ public class ProfileActivity extends AppCompatActivity{
         prgBar.setProgress(currentpoints);
     }
 
-    public void ButtonCollectActivity (View view) {
-            finish();
-        Intent i = new Intent (this, LeaderboardActivity.class);
-            startActivity(i);
-        }
+    public void BtnArtworkOverviewActivity (View view) {
+        Intent intent = new Intent(ProfileActivity.this, CollectOverviewActivity.class);
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        startActivity(intent);
+        finish();
+    }
 
 
     //Inflate the top toolbar with a menu

@@ -74,6 +74,8 @@
                 android:layout_height="wrap_content"
                 android:gravity="center"
                 android:hint="INDTAST KODE"
+                android:nextFocusForward="@id/btn_enter_art_code"
+                android:singleLine="true"
                 style="@style/MyText" />
 
             

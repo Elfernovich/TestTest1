@@ -143,8 +143,8 @@ public class CollectOverviewActivity extends AppCompatActivity {
                     case R.id.id_reward:
                         Intent intent3 = new Intent (CollectOverviewActivity.this, LeaderboardActivity.class);
                         intent3.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                        finish();
                         startActivity(intent3);
+                        finish();
                         //mIntent.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
                         break;
                 }

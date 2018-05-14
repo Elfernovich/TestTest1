@@ -27,7 +27,7 @@ public class WelcomeActivity extends AppCompatActivity {
         //Initialize the FirebaseAuth instance
         mAuth = FirebaseAuth.getInstance();
 
-        welcomeText = (TextView) findViewById(R.id.textView_Welcome);
+        buttonStart = (Button) findViewById(R.id.buttonStart);
     }
 
     //If the user already is logged in he will be directed to the ProfileActivity.class

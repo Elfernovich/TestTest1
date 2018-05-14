@@ -40,7 +40,8 @@
                 android:layout_width="50dp"
                 android:layout_height="50dp"
                 android:background="@color/trans"
-                android:backgroundTint="@color/colorPrimary"
+                style="@style/MyButton"
+                android:backgroundTint="@color/colorAccent"
                 android:src="@android:drawable/ic_media_play" />
 
             <TextView
@@ -51,7 +52,7 @@
                 android:layout_marginTop="8dp"
                 android:textSize="18sp"
                 android:textStyle="bold"
-                android:textColor="@color/colorPrimary"/>
+                style="@style/MyText"/>
 
             <TextView
                 android:id="@+id/txtArtist"
@@ -59,13 +60,13 @@
                 android:layout_height="wrap_content"
                 android:text="Artist"
                 android:padding="8dp"
-                android:textColor="@color/colorPrimary"/>
+                style="@style/MyText"/>
             
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="INDTAST KUNSTVÆRKETS KODE"
-                android:textColor="@color/colorPrimary" />
+                style="@style/MyText" />
 
             <EditText
                 android:id="@+id/editTextArtworkCode"
@@ -73,11 +74,12 @@
                 android:layout_height="wrap_content"
                 android:gravity="center"
                 android:hint="INDTAST KODE"
-                android:textColor="@color/colorBlack" />
+                style="@style/MyText" />
 
             
             <Button
                 android:id="@+id/btn_enter_art_code"
+                style="@style/MyButton"
                 android:text="Gem kunstværk"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"

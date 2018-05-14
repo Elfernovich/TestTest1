@@ -146,7 +146,8 @@
                 android:id="@+id/bottomNavView_Bar"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                app:menu="@menu/bottom_navigation_menu" />
+                app:menu="@menu/bottom_navigation_menu"
+                />
         </RelativeLayout>
 
     </RelativeLayout>

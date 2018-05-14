@@ -17,6 +17,6 @@
         android:id="@+id/id_reward"
         android:icon="@drawable/ic_reward"
         android:title="Leaderboard"></item>
-//
+    //
 
 </menu>

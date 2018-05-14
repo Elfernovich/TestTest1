@@ -20,6 +20,13 @@
         <item name="android:textColorSecondary">@color/colorSecondary</item>
     </style>
 
+    <style name="NavigationBar" parent="Theme.AppCompat.Light">
+        <item name="colorControlHighlight">@color/colorAccent</item>
+        <item name="android:icon">@color/colorAccent</item>
+        <item name="android:textColor">@color/colorBlack</item>
+        <item name="android:toolbarStyle">@color/colorLightBlue</item>
+    </style>
+
 
     <!-- Basic style for text -->
     <style name="MyText" parent="@android:style/TextAppearance">

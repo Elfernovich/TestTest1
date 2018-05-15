@@ -313,8 +313,8 @@ public class CollectArtworkActivity extends AppCompatActivity implements View.On
             mediaPlayer = MediaPlayer.create(this, songs[1]);
 
         }else if (artwork_id.equals(artwork3)) {
-            Toast.makeText(getApplicationContext(), "Afspiller Læbestift-bombemaskine lydklip ", Toast.LENGTH_SHORT).show();
-            mediaPlayer = MediaPlayer.create(this, songs[2]);
+            Toast.makeText(getApplicationContext(), "Der er desværre ikke noget lydklip til dette værk", Toast.LENGTH_SHORT).show();
+            mediaPlayer.stop();
 
         }else if (artwork_id.equals(artwork4)) {
             Toast.makeText(getApplicationContext(), "Der er desværre ikke noget lydklip til dette værk", Toast.LENGTH_SHORT).show();
